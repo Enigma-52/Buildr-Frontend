@@ -6,7 +6,6 @@ import MSP from '../components/MSP';
 import Pricing from '../components/Pricing';
 import Footer from '../components/Footer';
 
-
 function Home() {
   return (
     <div className="App">

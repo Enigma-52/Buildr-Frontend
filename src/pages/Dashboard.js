@@ -4,36 +4,34 @@ import { auth } from "../utils/firebase.utils";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-
-  const handleLogout = async () => {
-    try {
-      await auth.signOut();
-      navigate('/signin'); 
-    } catch (error) {
-      console.error('Logout error:', error.message);
-    }
-  };
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+      if (!user) {
+        navigate('/signin');
+      }
     });
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [navigate]);
 
-  useEffect(() => {
-    console.log("Currently logged in");
-    console.log(user);
-    if (user===null) {
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
       navigate('/signin');
+    } catch (error) {
+      console.error('Logout error:', error.message);
     }
-  }, [user, navigate]);
+  };
 
+  if (!user) {
+    return <p>Loading...</p>;
+  }
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white">
       <div className="container mx-auto px-4 py-8">

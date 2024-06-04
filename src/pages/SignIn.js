@@ -19,6 +19,8 @@ const SignIn = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
+      console.log("THE USER DATA IS ---------- ");
+      console.log(user.uid);
       sendUserDataToBackend(user);
       navigate('/dashboard');
     }
@@ -26,14 +28,10 @@ const SignIn = () => {
 
   const sendUserDataToBackend = async (user) => {
     try {
-      const response = await fetch('YOUR_BACKEND_URL/api/login', {
+      const response = await fetch('http://localhost:5000/api/login', {
         method: 'POST',
-        body: JSON.stringify({
-          uid: user.uid,
-          email: user.email,
-          displayName: user.displayName,
-          photoURL: user.photoURL
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(user)
       });
 
       if (!response.ok) {

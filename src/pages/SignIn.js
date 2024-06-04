@@ -19,9 +19,38 @@ const SignIn = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
+      sendUserDataToBackend(user);
       navigate('/dashboard');
     }
   }, [user, navigate]);
+
+  const sendUserDataToBackend = async (user) => {
+    try {
+      const token = await user.getIdToken();
+      const response = await fetch('YOUR_BACKEND_URL/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: JSON.stringify({
+          uid: user.uid,
+          email: user.email,
+          displayName: user.displayName,
+          photoURL: user.photoURL
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      const data = await response.json();
+      console.log('User data sent to backend:', data);
+    } catch (error) {
+      console.error('Error sending user data to backend:', error);
+    }
+  };
 
   const logGoogleUser = async () => {
     const response = await signInWithGooglePopup();

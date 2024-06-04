@@ -26,13 +26,8 @@ const SignIn = () => {
 
   const sendUserDataToBackend = async (user) => {
     try {
-      const token = await user.getIdToken();
       const response = await fetch('YOUR_BACKEND_URL/api/login', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
         body: JSON.stringify({
           uid: user.uid,
           email: user.email,

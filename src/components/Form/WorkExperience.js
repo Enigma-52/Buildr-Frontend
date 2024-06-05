@@ -60,7 +60,7 @@ const WorkExperience = () => {
           />
         </div>
         <div className="mb-2">
-          <label className="block mb-1">End Year</label>
+          <label className="block mb-1">End Year ( Leave empty if still working here )</label>
           <input
             type="text"
             name="endYear"

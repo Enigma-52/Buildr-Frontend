@@ -67,7 +67,7 @@ const Education = () => {
           />
         </div>
         <div className="mb-2">
-          <label className="block mb-1">End Year</label>
+          <label className="block mb-1">End Year ( Leave empty if still studying )</label>
           <input
             type="text"
             name="endYear"

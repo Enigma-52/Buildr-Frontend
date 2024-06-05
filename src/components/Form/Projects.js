@@ -63,6 +63,7 @@ const Projects = () => {
         </div>
         <div className="mb-2">
           <label className="block mb-1">Revenue/Users</label>
+          <span className="text-s text-gray-500">Example: $50 MRR / 25 users</span>
           <input
             type="text"
             name="revenueUsers"

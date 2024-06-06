@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
+import { FaGithub, FaLinkedin, FaTwitter, FaLink } from 'react-icons/fa';
+import { ReactComponent as LeetCodeIcon } from '../../assets/icons/leetcode.svg';
 
 const ProfileDetails = () => {
   const [showGithub, setShowGithub] = useState(false);
   const [showLinkedIn, setShowLinkedIn] = useState(false);
   const [showTwitter, setShowTwitter] = useState(false);
   const [showOther, setShowOther] = useState(false);
+  const [showLeetCode, setShowLeetCode] = useState(false);
 
   return (
     <div className="bg-gray-800 p-4 rounded-md">
@@ -30,15 +33,26 @@ const ProfileDetails = () => {
 
       <h2 className="text-xl mt-4 mb-4">Social Links</h2>
       <div className="flex space-x-4">
-        <button onClick={() => setShowGithub(!showGithub)} className="bg-gray-700 p-2 rounded-md">GitHub</button>
-        <button onClick={() => setShowLinkedIn(!showLinkedIn)} className="bg-gray-700 p-2 rounded-md">LinkedIn</button>
-        <button onClick={() => setShowTwitter(!showTwitter)} className="bg-gray-700 p-2 rounded-md">Twitter</button>
-        <button onClick={() => setShowOther(!showOther)} className="bg-gray-700 p-2 rounded-md">Other</button>
+        <button onClick={() => setShowGithub(!showGithub)} className="bg-gray-700 p-2 rounded-md">
+          <FaGithub />
+        </button>
+        <button onClick={() => setShowLinkedIn(!showLinkedIn)} className="bg-gray-700 p-2 rounded-md">
+          <FaLinkedin />
+        </button>
+        <button onClick={() => setShowTwitter(!showTwitter)} className="bg-gray-700 p-2 rounded-md">
+          <FaTwitter />
+        </button>
+        <button onClick={() => setShowOther(!showOther)} className="bg-gray-700 p-2 rounded-md">
+          <FaLink />
+        </button>
+        <button onClick={() => setShowLeetCode(!showLeetCode)} className="bg-gray-700 p-2 rounded-md">
+          <LeetCodeIcon width="24" height="24" />
+        </button>
       </div>
 
       {showGithub && (
         <div className="mt-4">
-          <label className="block mb-1">GitHub URL</label>
+          <label className="block mb-1">GitHub Username</label>
           <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
         </div>
       )}
@@ -60,6 +74,13 @@ const ProfileDetails = () => {
       {showOther && (
         <div className="mt-4">
           <label className="block mb-1">Other URL</label>
+          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+        </div>
+      )}
+
+      {showLeetCode && (
+        <div className="mt-4">
+          <label className="block mb-1">LeetCode Username</label>
           <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
         </div>
       )}

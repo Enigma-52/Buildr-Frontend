@@ -19,10 +19,8 @@ const SignIn = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (user) {
-      console.log("THE USER DATA IS ---------- ");
-      console.log(user.uid);
       sendUserDataToBackend(user);
-      navigate('/dashboard');
+      navigate('/form');
     }
   }, [user, navigate]);
 

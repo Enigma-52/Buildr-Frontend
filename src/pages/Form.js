@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from "../utils/firebase.utils";
 import ProfileDetails from '../components/Form/ProfileDetails';
 import Education from '../components/Form/Education';
 import WorkExperience from '../components/Form/WorkExperience';
 import Projects from '../components/Form/Projects';
 
 const Form = () => {
+
+  const navigate = useNavigate();
+  const [user, setUser] = useState(null);
 
     const [formData, setFormData] = useState({
         personalInfo: {
@@ -44,9 +49,34 @@ const Form = () => {
       };
     
       const handleSubmit = () => {
-        // Send formData to backend
         console.log(formData);
       };
+
+      useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+          setUser(user);
+          if (!user) {
+            navigate('/signin');
+          }
+        });
+    
+        return () => {
+          unsubscribe();
+        };
+      }, [navigate]);
+    
+      const handleLogout = async () => {
+        try {
+          await auth.signOut();
+          navigate('/signin');
+        } catch (error) {
+          console.error('Logout error:', error.message);
+        }
+      };
+    
+      if (!user) {
+        return <p>Loading...</p>;
+      }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8 flex flex-col justify-center items-center">
@@ -68,6 +98,14 @@ const Form = () => {
       <div class="py-3">
       <button class="bg-red-600 p-2 rounded-md py-2" onClick={handleSubmit}>Submit</button>
       </div>
+      <div className="mt-8 text-center">
+          <button
+            onClick={handleLogout}
+            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
+          >
+            Logout
+          </button>
+        </div>
     </div>
   );
 };

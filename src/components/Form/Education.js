@@ -6,11 +6,10 @@ const Education = () => {
     institution: '',
     degree: '',
     startYear: '',
-    endYear: '', // We assume this is initially empty
+    endYear: '', 
   });
 
   const addEducation = () => {
-    // If no end year is provided, set it to the current year
     const currentYear = new Date().getFullYear().toString();
     const newEducation = {
       ...educationInput,

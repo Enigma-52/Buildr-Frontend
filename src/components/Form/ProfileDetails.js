@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { FaGithub, FaLinkedin, FaTwitter, FaLink } from 'react-icons/fa';
 import { ReactComponent as LeetCodeIcon } from '../../assets/icons/leetcode.svg';
 
-const ProfileDetails = () => {
+const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
   const [showGithub, setShowGithub] = useState(false);
   const [showLinkedIn, setShowLinkedIn] = useState(false);
   const [showTwitter, setShowTwitter] = useState(false);
@@ -15,19 +15,43 @@ const ProfileDetails = () => {
       <form>
         <div className="mb-2">
           <label className="block mb-1">Name</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={onChange}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
         <div className="mb-2">
           <label className="block mb-1">A Short Bio</label>
-          <input type="text" className="w-full p-3 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            name="bio"
+            value={formData.bio}
+            onChange={onChange}
+            className="w-full p-3 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
         <div className="mb-2">
           <label className="block mb-1">Email</label>
-          <input type="email" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={onChange}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
         <div className="mb-2">
           <label className="block mb-1">Location</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            name="location"
+            value={formData.location}
+            onChange={onChange}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       </form>
 
@@ -53,35 +77,60 @@ const ProfileDetails = () => {
       {showGithub && (
         <div className="mt-4">
           <label className="block mb-1">GitHub Username</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            value={formData.github}
+            onChange={(e) => onSocialLinkChange(e, 'github')}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       )}
 
       {showLinkedIn && (
         <div className="mt-4">
           <label className="block mb-1">LinkedIn URL</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            value={formData.linkedin}
+            onChange={(e) => onSocialLinkChange(e, 'linkedin')}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       )}
 
       {showTwitter && (
         <div className="mt-4">
           <label className="block mb-1">Twitter URL</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            value={formData.twitter}
+            onChange={(e) => onSocialLinkChange(e, 'twitter')}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       )}
 
       {showOther && (
         <div className="mt-4">
           <label className="block mb-1">Other URL</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            value={formData.other}
+            onChange={(e) => onSocialLinkChange(e, 'other')}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       )}
 
       {showLeetCode && (
         <div className="mt-4">
           <label className="block mb-1">LeetCode Username</label>
-          <input type="text" className="w-full p-2 rounded-md bg-gray-700 border border-gray-600" />
+          <input
+            type="text"
+            value={formData.leetcode}
+            onChange={(e) => onSocialLinkChange(e, 'leetcode')}
+            className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
+          />
         </div>
       )}
     </div>

@@ -5,52 +5,65 @@ import ProfileDetails from '../components/Form/ProfileDetails';
 import Education from '../components/Form/Education';
 import WorkExperience from '../components/Form/WorkExperience';
 import Projects from '../components/Form/Projects';
+import axios from 'axios';
 
 const Form = () => {
 
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
 
-    const [formData, setFormData] = useState({
-        personalInfo: {
-          name: '',
-          bio: '',
-          email: '',
-          location: '',
-        },
-        socialLinks: {
-          github: '',
-          linkedin: '',
-          twitter: '',
-          other: '',
-        },
-      });
-    
-      const handlePersonalInfoChange = (e) => {
-        const { name, value } = e.target;
-        setFormData(prevState => ({
-          ...prevState,
-          personalInfo: {
-            ...prevState.personalInfo,
-            [name]: value,
-          },
-        }));
-      };
-    
-      const handleSocialLinkChange = (e, platform) => {
-        const { value } = e.target;
-        setFormData(prevState => ({
-          ...prevState,
-          socialLinks: {
-            ...prevState.socialLinks,
-            [platform]: value,
-          },
-        }));
-      };
-    
-      const handleSubmit = () => {
-        console.log(formData);
-      };
+  const [formData, setFormData] = useState({
+    personalInfo: {
+      name: '',
+      bio: '',
+      email: '',
+      location: '',
+    },
+    socialLinks: {
+      github: '',
+      linkedin: '',
+      twitter: '',
+      other: '',
+      leetcode: ''
+    },
+  });
+
+  const handlePersonalInfoChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      personalInfo: {
+        ...prevState.personalInfo,
+        [name]: value,
+      },
+    }));
+  };
+
+  const handleSocialLinkChange = (e, platform) => {
+    const { value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      socialLinks: {
+        ...prevState.socialLinks,
+        [platform]: value,
+      },
+    }));
+  };
+
+  const handleSubmit = async () => {
+    const payload = {
+      userId: user.uid,
+      personalInfo: formData.personalInfo,
+      socialLinks: formData.socialLinks
+    };
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/submitProfileDetails', payload);
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Error submitting profile details:', error);
+    }
+  };
 
       useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {

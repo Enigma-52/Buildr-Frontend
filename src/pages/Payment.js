@@ -1,6 +1,9 @@
+/*global Razorpay*/
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils";
+import axios from "axios";
 
 const Payment = () => {
   const [user, setUser] = useState(null);
@@ -15,21 +18,81 @@ const Payment = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const script = document.createElement('script');
+
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+
+    document.body.appendChild(script);
+  }, []);
+
   const processStripePayment = async () => {
-    try {
-      console.log('Processing payment via Stripe...');
-      
-    } catch (error) {
-      console.error('Error processing payment via Stripe:', error);
-    }
   };
 
   const processRazorpayPayment = async () => {
+    const amount = 39;
+    const currency = 'INR';
+    const receipt = 'Buildr Profile Lifetime Fee';
+
     try {
-      console.log('Processing payment via Razorpay...');
-      
+        const response = await fetch('http://localhost:5000/createPayment', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ amount, currency, receipt })
+        });
+
+        const data = await response.json();
+        const orderId = data.orderId;
+        const orderAmount = data.amount;
+
+        const options = {
+            key: "rzp_test_KLT9mlioFTVucO",
+            amount: orderAmount,
+            currency: currency,
+
+            name: 'Buildr',
+            checkout: {
+              name: "Buildr"
+            },
+            description: 'Buildr Profile Lifetime Fee',
+            order_id: orderId,
+            handler: async function(response) {
+                try {
+                    const paymentId = response.razorpay_payment_id;
+                    const signature = response.razorpay_signature;
+
+                    const successResponse = await fetch('/paymentSuccess', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ orderId, paymentId, signature })
+                    });
+                      if (successResponse.status === 200) {
+                        // Payment successful, navigate to success page
+                        //navigate('/payment-success');
+                      } else {
+                        // Payment failed
+                        alert('Payment failed');
+                      }
+                } catch (error) {
+                    console.error('Error processing payment:', error);
+                    alert('Payment failed');
+                }
+            },
+            theme: {
+                color: '#3399cc'
+            }
+        };
+
+        const rzp = new Razorpay(options);
+        rzp.open();
     } catch (error) {
-      console.error('Error processing payment via Razorpay:', error);
+        console.error('Error creating payment:', error);
+        alert('Error creating payment');
     }
   };
 
@@ -42,7 +105,7 @@ const Payment = () => {
             onClick={processStripePayment}
             className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-green-500 transition duration-300"
           >
-            Pay ₹39 via Stripe
+            Pay ₹39 via Stripe (Coming Soon)
           </button>
           <button
             onClick={processRazorpayPayment}

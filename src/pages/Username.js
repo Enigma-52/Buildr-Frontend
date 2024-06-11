@@ -4,8 +4,9 @@ import { auth } from "../utils/firebase.utils"
 
 const Username = () => {
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(auth.currentUser);
     const [username, setUsername] = useState('');
+    const userId=user.uid;
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -38,10 +39,30 @@ const Username = () => {
         setUsername(e.target.value);
       };
     
-      const handleSubmit = () => {
-        alert(`Your unique link is buildr-waitlist.vercel.app/${username}`);
-      };
-
+      const handleSubmit = async () => {
+        
+            const id = user.uid;
+            console.log(id);
+            const response = await fetch('http://localhost:5000/api/buildrUsername', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId,
+                    username,
+                }),
+            });
+            
+            if (!response.ok) {
+                throw new Error('Failed to update username');
+            }
+            
+            const data = await response.json();
+            alert(`Your unique link is buildr-waitlist.vercel.app/${username}`);
+            navigate('/form');
+        };
+    
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full">

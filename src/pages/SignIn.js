@@ -20,7 +20,7 @@ const SignIn = () => {
   useEffect(() => {
     if (user) {
       sendUserDataToBackend(user);
-      navigate('/form');
+      navigate('/username');
     }
   }, [user, navigate]);
 

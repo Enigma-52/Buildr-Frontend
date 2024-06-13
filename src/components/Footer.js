@@ -9,18 +9,13 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4">SaaS Platform</h3>
             <ul className="text-gray-400">
               <li className="mb-2">
-                <a href="https://twitter.com/product" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500">
+                <a href="https://twitter.com/myBuildr" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500">
                   Twitter
                 </a>
               </li>
               <li className="mb-2">
-                <a href="https://facebook.com/product" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500">
-                  Facebook
-                </a>
-              </li>
-              <li className="mb-2">
-                <a href="https://linkedin.com/company/product" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500">
-                  LinkedIn
+                <a href="https://www.instagram.com/my.buildr/" target="_blank" rel="noopener noreferrer" className="hover:text-purple-500">
+                  Instagram
                 </a>
               </li>
             </ul>

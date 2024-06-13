@@ -11,22 +11,21 @@ import Username from './pages/Username';
 const pageVariants = {
   initial: {
     opacity: 0,
-    scale: 0.8,
+    y: 20,
   },
   in: {
     opacity: 1,
-    scale: 1,
+    y: 0,
   },
   out: {
     opacity: 0,
-    scale: 0.8,
+    y: -20,
   },
 };
 
 const pageTransition = {
-  type: 'spring',
-  stiffness: 70,
-  damping: 20,
+  duration: 0.5,
+  ease: 'easeInOut',
 };
 
 function AnimatedRoutes() {

@@ -13,13 +13,14 @@ const Pricing = () => {
         <div class="bg-gradient-to-b from-purple-300 to-purple-600">
             <div class="container m-auto px-6 py-20 md:px-12 lg:px-20">
                 <div class="m-auto text-center lg:w-8/12 xl:w-7/12">
-                    <h2 class="text-2xl text-black font-bold md:text-4xl">A Tailus Blocks subscription gives you access to our components and more.</h2>
+                    <h2 class="text-2xl text-black font-bold md:text-4xl py-2">Create your Buildr Page for free</h2>
+                    <h5 class="text-md text-gray-600 md:text-2xl">Get the lifetime deal when you are ready to publish!</h5>
                 </div>
                 <div class="mt-12 m-auto -space-y-4 items-center justify-center md:flex md:space-y-0 md:-space-x-4 xl:w-10/12">
                     <div class="py-12 relative z-10 -mx-4 group md:w-6/12 md:mx-0 lg:w-5/12">
                         <div aria-hidden="true" class="absolute top-0 w-full h-full rounded-2xl bg-gray-700 shadow-xl transition duration-500 group-hover:scale-105 lg:group-hover:scale-110"></div>
                         <div class="relative p-6 space-y-6 lg:p-8">
-                            <h3 class="text-3xl text-white font-semibold text-center">Organisation</h3>
+                            <h3 class="text-3xl text-white font-semibold text-center">Showcase Yourself</h3>
                             <div>
                                 <div class="relative flex justify-around">
                                     <div class="flex items-end">
@@ -45,20 +46,20 @@ const Pricing = () => {
                         <div class="relative p-6 pt-16 md:p-8 md:pl-12 md:rounded-r-2xl lg:pl-20 lg:p-16">
                             <ul role="list" class="space-y-4 py-6 text-white">
                                 <li class="space-x-2">
-                                    <span>&#9989; First premium advantage</span>
+                                    <span>&#9989; Comprehensive portfolio creation and hosting.</span>
                                 </li>
                                 <li class="space-x-2">
                                     
-                                    <span>&#9989; Second advantage weekly</span>
+                                    <span>&#9989; Make changes to your portfolio anytime.</span>
                                 </li>
                                 <li class="space-x-2">
-                                    <span>&#9989; Third advantage donate to project</span>
+                                    <span>&#9989; Multiple themes to choose from</span>
                                 </li>
                                 <li class="space-x-2">
-                                    <span>&#9989; Fourth, access to all components weekly</span>
+                                    <span>&#9989; Pay once, use Forever</span>
                                 </li>
                             </ul>
-                            <p class="text-white">Team can be any size, and you can add or switch members as needed. Companies using our platform include:</p>
+                            <p class="text-white">Enjoy lifetime hosting for your developer portfolio, ensuring your projects are always accessible without additional fees.</p>
                         </div>
                     </div>
                 </div>

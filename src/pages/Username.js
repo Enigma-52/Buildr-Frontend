@@ -6,13 +6,15 @@ const Username = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(auth.currentUser);
     const [username, setUsername] = useState('');
-    const userId=user.uid;
+    const [userId, setUserId] = useState('');
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((user) => {
           setUser(user);
           if (!user) {
             navigate('/signin');
+          }else {
+            setUserId(user.uid); 
           }
         });
     
@@ -21,10 +23,29 @@ const Username = () => {
         };
       }, [navigate]);
     
+      useEffect(() => {
+        if (user?.uid) {
+            const fetchUsername = async () => {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/getUsername?userId=${user.uid}`);
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch username');
+                    }
+                    const data = await response.json();
+                    setUsername(data.username);
+                } catch (error) {
+                    console.error('Error fetching username:', error);
+                }
+            };
+            fetchUsername();
+        }
+    }, [user?.uid]);
+    
+    
       const handleLogout = async () => {
         try {
           await auth.signOut();
-          navigate('/signin');
+          navigate('/');
         } catch (error) {
           console.error('Logout error:', error.message);
         }

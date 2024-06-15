@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const WorkExperience = () => {
+const WorkExperience = ({ onWorkExperienceChange }) => {
   const [workExperiences, setWorkExperiences] = useState([]);
   const [workInput, setWorkInput] = useState({
     company: '',
@@ -11,19 +11,28 @@ const WorkExperience = () => {
 
   const addWorkExperience = () => {
     if (workInput.company.trim() !== '') {
-      setWorkExperiences([...workExperiences, workInput]);
+      const newWorkExperience = { ...workInput };
+      setWorkExperiences([...workExperiences, newWorkExperience]);
       setWorkInput({ company: '', role: '', startYear: '', endYear: '' });
+      onWorkExperienceChange([...workExperiences, newWorkExperience]); // Send updated work experiences to parent
+      console.log('Updated work experiences:', [...workExperiences, newWorkExperience]); // Log updated work experiences
     }
   };
 
   const removeWorkExperience = (index) => {
-    setWorkExperiences(workExperiences.filter((_, i) => i !== index));
+    const updatedWorkExperiences = workExperiences.filter((_, i) => i !== index);
+    setWorkExperiences(updatedWorkExperiences);
+    onWorkExperienceChange(updatedWorkExperiences); // Send updated work experiences to parent
+    console.log('Updated work experiences:', updatedWorkExperiences); // Log updated work experiences
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setWorkInput({ ...workInput, [name]: value });
   };
+
+  // Add a temporary console.log to ensure component rendering
+  console.log('WorkExperience Component Rendered. Work Experiences:', workExperiences);
 
   return (
     <div className="bg-gray-800 p-4 rounded-md">

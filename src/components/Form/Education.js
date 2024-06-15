@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
-const Education = () => {
+const Education = ({ onEducationChange }) => {
   const [educations, setEducations] = useState([]);
   const [educationInput, setEducationInput] = useState({
     institution: '',
     degree: '',
     startYear: '',
-    endYear: '', 
+    endYear: '',
   });
 
   const addEducation = () => {
@@ -17,13 +17,20 @@ const Education = () => {
     };
 
     if (educationInput.institution.trim() !== '') {
-      setEducations([...educations, newEducation]);
+      const updatedEducations = [...educations, newEducation];
+      setEducations(updatedEducations);
       setEducationInput({ institution: '', degree: '', startYear: '', endYear: '' });
+      onEducationChange(updatedEducations); // Update parent component state
+      console.log("hello");
+      console.log('Updated educations:', updatedEducations); // Log the updated educations
     }
   };
 
   const removeEducation = (index) => {
-    setEducations(educations.filter((_, i) => i !== index));
+    const updatedEducations = educations.filter((_, i) => i !== index);
+    setEducations(updatedEducations);
+    onEducationChange(updatedEducations); // Update parent component state
+    console.log('Updated educations:', updatedEducations); // Log the updated educations
   };
 
   const handleInputChange = (e) => {
@@ -66,7 +73,7 @@ const Education = () => {
           />
         </div>
         <div className="mb-2">
-          <label className="block mb-1">End Year ( Leave empty if still studying )</label>
+          <label className="block mb-1">End Year (Leave empty if still studying)</label>
           <input
             type="text"
             name="endYear"

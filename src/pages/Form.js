@@ -8,10 +8,8 @@ import Projects from '../components/Form/Projects';
 import axios from 'axios';
 
 const Form = () => {
-
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
-
   const [formData, setFormData] = useState({
     personalInfo: {
       name: '',
@@ -26,6 +24,9 @@ const Form = () => {
       other: '',
       leetcode: ''
     },
+    education: [],
+    workExperience: [],
+    projects: []
   });
 
   const handlePersonalInfoChange = (e) => {
@@ -50,15 +51,33 @@ const Form = () => {
     }));
   };
 
+  const handleEducationChange = (updatedEducations) => {
+    setFormData(prevState => ({
+      ...prevState,
+      education: updatedEducations,
+    }));
+  };
+
+  const handleWorkExperienceChange = (updatedWorkExperiences) => {
+    setFormData(prevState => ({
+      ...prevState,
+      workExperience: updatedWorkExperiences,
+    }));
+  };
+
   const handleSubmit = async () => {
     const payload = {
       userId: user.uid,
       personalInfo: formData.personalInfo,
-      socialLinks: formData.socialLinks
+      socialLinks: formData.socialLinks,
+      education: formData.education,
+      workExperience: formData.workExperience,
+      projects: formData.projects
     };
 
     try {
       const response = await axios.post('http://localhost:5000/api/submitProfileDetails', payload);
+      console.log(payload);
       console.log(response.data.message);
     } catch (error) {
       console.error('Error submitting profile details:', error);
@@ -66,60 +85,65 @@ const Form = () => {
     navigate('/payment');
   };
 
-      useEffect(() => {
-        const unsubscribe = auth.onAuthStateChanged((user) => {
-          setUser(user);
-          if (!user) {
-            navigate('/signin');
-          }
-        });
-    
-        return () => {
-          unsubscribe();
-        };
-      }, [navigate]);
-    
-      const handleLogout = async () => {
-        try {
-          await auth.signOut();
-          navigate('/signin');
-        } catch (error) {
-          console.error('Logout error:', error.message);
-        }
-      };
-    
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
       if (!user) {
-        return <p>Loading...</p>;
+        navigate('/signin');
       }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      navigate('/signin');
+    } catch (error) {
+      console.error('Logout error:', error.message);
+    }
+  };
+
+  if (!user) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8 flex flex-col justify-center items-center">
       <h1 className="text-4xl font-bold mb-8">Create your Buildr Profile</h1>
       <div className="w-full max-w-6xl flex space-x-8">
         <div className="w-1/3 space-y-4">
-        <ProfileDetails 
+          <ProfileDetails 
             formData={formData.personalInfo} 
             onChange={handlePersonalInfoChange}
             onSocialLinkChange={handleSocialLinkChange}
           />
-          <Education />
+          <Education 
+            formData={formData.education} 
+            onEducationChange={handleEducationChange}
+          />
         </div>
         <div className="w-2/3 space-y-4">
-          <WorkExperience />
+          <WorkExperience 
+            onWorkExperienceChange={handleWorkExperienceChange} 
+          />
           <Projects />
         </div>
       </div>
-      <div class="py-3">
-      <button class="bg-red-600 p-2 rounded-md py-2" onClick={handleSubmit}>Submit</button>
+      <div className="py-3">
+        <button className="bg-red-600 p-2 rounded-md py-2" onClick={handleSubmit}>Submit</button>
       </div>
       <div className="mt-8 text-center">
-          <button
-            onClick={handleLogout}
-            className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
-          >
-            Logout
-          </button>
-        </div>
+        <button
+          onClick={handleLogout}
+          className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
+        >
+          Logout
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
-const Education = ({ onEducationChange }) => {
-  const [educations, setEducations] = useState([]);
+const Education = ({ formData, onEducationChange }) => {
+  const [educations, setEducations] = useState(formData.education || []);
   const [educationInput, setEducationInput] = useState({
     institution: '',
     degree: '',

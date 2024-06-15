@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from "../utils/firebase.utils";
+import { auth , db , firestoreFunctions } from "../utils/firebase.utils";
 import ProfileDetails from '../components/Form/ProfileDetails';
 import Education from '../components/Form/Education';
 import WorkExperience from '../components/Form/WorkExperience';
 import Projects from '../components/Form/Projects';
 import axios from 'axios';
 
+const { getDocs, collection } = firestoreFunctions;
+
 const Form = () => {
+
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
   const [formData, setFormData] = useState({
@@ -28,6 +31,29 @@ const Form = () => {
     workExperience: [],
     projects: []
   });
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userId = auth.currentUser.uid;
+        const usersCollectionRef = collection(db, 'users');
+        const querySnapshot = await getDocs(usersCollectionRef);
+        
+        querySnapshot.forEach(async (doc) => {
+          if (doc.id === userId) {
+            const userData = doc.data();
+            console.log("Fetched data:");
+            console.log(userData);
+            setFormData(userData); 
+          }
+        });
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchUserData();
+  }, []);
 
   const handlePersonalInfoChange = (e) => {
     const { name, value } = e.target;

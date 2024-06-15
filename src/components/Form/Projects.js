@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ProjectCard from './ProjectCard';
 
-const Projects = () => {
+const Projects = ({ onProjectsChange }) => {
   const [projects, setProjects] = useState([]);
   const [projectInput, setProjectInput] = useState({
     name: '',
@@ -14,19 +14,28 @@ const Projects = () => {
 
   const addProject = () => {
     if (projectInput.name.trim() !== '') {
-      setProjects([...projects, projectInput]);
+      const newProject = { ...projectInput };
+      setProjects([...projects, newProject]);
       setProjectInput({ name: '', description: '', url: '', revenueUsers: '', status: 'Building', category: 'Web Application' });
+      onProjectsChange([...projects, newProject]); // Send updated projects to parent
+      console.log('Updated projects:', [...projects, newProject]); // Log updated projects
     }
   };
 
   const removeProject = (index) => {
-    setProjects(projects.filter((_, i) => i !== index));
+    const updatedProjects = projects.filter((_, i) => i !== index);
+    setProjects(updatedProjects);
+    onProjectsChange(updatedProjects); // Send updated projects to parent
+    console.log('Updated projects:', updatedProjects); // Log updated projects
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProjectInput({ ...projectInput, [name]: value });
   };
+
+  // Add a temporary console.log to ensure component rendering
+  console.log('Projects Component Rendered. Projects:', projects);
 
   return (
     <div className="bg-gray-800 p-4 rounded-md">

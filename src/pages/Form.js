@@ -65,6 +65,13 @@ const Form = () => {
     }));
   };
 
+  const handleProjectsChange = (updatedProjects) => {
+    setFormData(prevState => ({
+      ...prevState,
+      projects: updatedProjects,
+    }));
+  };
+
   const handleSubmit = async () => {
     const payload = {
       userId: user.uid,
@@ -130,7 +137,9 @@ const Form = () => {
           <WorkExperience 
             onWorkExperienceChange={handleWorkExperienceChange} 
           />
-          <Projects />
+          <Projects 
+            onProjectsChange={handleProjectsChange} 
+          />
         </div>
       </div>
       <div className="py-3">

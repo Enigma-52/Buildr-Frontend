@@ -29,17 +29,14 @@ const Projects = ({ formData , onProjectsChange }) => {
   const removeProject = (index) => {
     const updatedProjects = projects.filter((_, i) => i !== index);
     setProjects(updatedProjects);
-    onProjectsChange(updatedProjects); // Send updated projects to parent
-    console.log('Updated projects:', updatedProjects); // Log updated projects
+    onProjectsChange(updatedProjects); 
+    console.log('Updated projects:', updatedProjects); 
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setProjectInput({ ...projectInput, [name]: value });
   };
-
-  // Add a temporary console.log to ensure component rendering
-  console.log('Projects Component Rendered. Projects:', projects);
 
   return (
     <div className="bg-gray-800 p-4 rounded-md">

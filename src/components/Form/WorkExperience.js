@@ -31,7 +31,7 @@ const WorkExperience = ({ formData, onWorkExperienceChange }) => {
   const removeWorkExperience = (index) => {
     const updatedWorkExperiences = workExperiences.filter((_, i) => i !== index);
     setWorkExperiences(updatedWorkExperiences);
-    onWorkExperienceChange(updatedWorkExperiences); // Send updated work experiences to parent
+    onWorkExperienceChange(updatedWorkExperiences);
   };
 
   const handleInputChange = (e) => {

@@ -82,7 +82,7 @@ const ProfilePicture = () => {
         <button
           onClick={handleUpload}
           className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition duration-300"
-          disabled={!file} // Disable button if no file is selected
+          disabled={!file}
         >
           {profilePicture ? 'Update Profile Picture' : 'Upload Profile Picture'}
         </button>

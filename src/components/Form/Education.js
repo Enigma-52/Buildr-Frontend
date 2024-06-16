@@ -1,8 +1,6 @@
 import React, { useState , useEffect } from 'react';
 
 const Education = ({ formData, onEducationChange }) => {
-  console.log("Education data");
-  
   const [educations, setEducations] = useState(formData || []);
   const [educationInput, setEducationInput] = useState({
     institution: '',

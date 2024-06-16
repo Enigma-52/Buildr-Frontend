@@ -3,7 +3,7 @@ import { FaGithub, FaLinkedin, FaTwitter, FaLink } from 'react-icons/fa';
 import { ReactComponent as LeetCodeIcon } from '../../assets/icons/leetcode.svg';
 
 const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
-  
+  console.log("profile form data");
   console.log(formData);
   const [showGithub, setShowGithub] = useState(false);
   const [showLinkedIn, setShowLinkedIn] = useState(false);
@@ -20,7 +20,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <input
             type="text"
             name="name"
-            value={formData.name}
+            value={formData.personalInfo.name}
             onChange={onChange}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -30,7 +30,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <input
             type="text"
             name="bio"
-            value={formData.bio}
+            value={formData.personalInfo.bio}
             onChange={onChange}
             className="w-full p-3 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -40,7 +40,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <input
             type="email"
             name="email"
-            value={formData.email}
+            value={formData.personalInfo.email}
             onChange={onChange}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -50,7 +50,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <input
             type="text"
             name="location"
-            value={formData.location}
+            value={formData.personalInfo.location}
             onChange={onChange}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -81,7 +81,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <label className="block mb-1">GitHub Username</label>
           <input
             type="text"
-            value={formData.github}
+            value={formData.socialLinks.github}
             onChange={(e) => onSocialLinkChange(e, 'github')}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -93,7 +93,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <label className="block mb-1">LinkedIn URL</label>
           <input
             type="text"
-            value={formData.linkedin}
+            value={formData.socialLinks.linkedin}
             onChange={(e) => onSocialLinkChange(e, 'linkedin')}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -105,7 +105,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <label className="block mb-1">Twitter URL</label>
           <input
             type="text"
-            value={formData.twitter}
+            value={formData.socialLinks.twitter}
             onChange={(e) => onSocialLinkChange(e, 'twitter')}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -117,7 +117,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <label className="block mb-1">Other URL</label>
           <input
             type="text"
-            value={formData.other}
+            value={formData.socialLinks.other}
             onChange={(e) => onSocialLinkChange(e, 'other')}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />
@@ -129,7 +129,7 @@ const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
           <label className="block mb-1">LeetCode Username</label>
           <input
             type="text"
-            value={formData.leetcode}
+            value={formData.socialLinks.leetcode}
             onChange={(e) => onSocialLinkChange(e, 'leetcode')}
             className="w-full p-2 rounded-md bg-gray-700 border border-gray-600"
           />

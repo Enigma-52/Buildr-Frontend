@@ -150,7 +150,7 @@ const Form = () => {
       <div className="w-full max-w-6xl flex space-x-8">
         <div className="w-1/3 space-y-4">
           <ProfileDetails 
-            formData={formData.personalInfo} 
+            formData={formData} 
             onChange={handlePersonalInfoChange}
             onSocialLinkChange={handleSocialLinkChange}
           />

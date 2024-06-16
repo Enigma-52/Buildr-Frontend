@@ -3,6 +3,8 @@ import { FaGithub, FaLinkedin, FaTwitter, FaLink } from 'react-icons/fa';
 import { ReactComponent as LeetCodeIcon } from '../../assets/icons/leetcode.svg';
 
 const ProfileDetails = ({ formData, onChange, onSocialLinkChange }) => {
+  
+  console.log(formData);
   const [showGithub, setShowGithub] = useState(false);
   const [showLinkedIn, setShowLinkedIn] = useState(false);
   const [showTwitter, setShowTwitter] = useState(false);

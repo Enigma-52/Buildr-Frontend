@@ -1,13 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 
 const Education = ({ formData, onEducationChange }) => {
-  const [educations, setEducations] = useState(formData.education || []);
+  console.log("Education data");
+  
+  const [educations, setEducations] = useState(formData || []);
   const [educationInput, setEducationInput] = useState({
     institution: '',
     degree: '',
     startYear: '',
     endYear: '',
   });
+
+  useEffect(() => {
+    setEducations(formData || []);
+  }, [formData]);
 
   const addEducation = () => {
     const currentYear = new Date().getFullYear().toString();
@@ -20,7 +26,7 @@ const Education = ({ formData, onEducationChange }) => {
       const updatedEducations = [...educations, newEducation];
       setEducations(updatedEducations);
       setEducationInput({ institution: '', degree: '', startYear: '', endYear: '' });
-      onEducationChange(updatedEducations); // Update parent component state
+      onEducationChange(updatedEducations); 
       console.log("hello");
       console.log('Updated educations:', updatedEducations); // Log the updated educations
     }

@@ -161,7 +161,7 @@ const Form = () => {
         </div>
         <div className="w-2/3 space-y-4">
           <WorkExperience 
-            formData={formData.WorkExperience} 
+            formData={formData.workExperience} 
             onWorkExperienceChange={handleWorkExperienceChange} 
           />
           <Projects 

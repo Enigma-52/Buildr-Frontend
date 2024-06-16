@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
-const WorkExperience = ({ onWorkExperienceChange }) => {
-  const [workExperiences, setWorkExperiences] = useState([]);
+const WorkExperience = ({ formData, onWorkExperienceChange }) => {
+  const [workExperiences, setWorkExperiences] = useState(formData || []);
   const [workInput, setWorkInput] = useState({
     company: '',
     role: '',
@@ -9,13 +9,22 @@ const WorkExperience = ({ onWorkExperienceChange }) => {
     endYear: '',
   });
 
+  useEffect(() => {
+    setWorkExperiences(formData || []);
+  }, [formData]);
+
   const addWorkExperience = () => {
+    const currentYear = new Date().getFullYear().toString();
+    const newWorkExperience = {
+      ...workInput,
+      endYear: workInput.endYear ? workInput.endYear : currentYear,
+    };
+
     if (workInput.company.trim() !== '') {
-      const newWorkExperience = { ...workInput };
-      setWorkExperiences([...workExperiences, newWorkExperience]);
+      const updatedWorkExperiences = [...workExperiences, newWorkExperience];
+      setWorkExperiences(updatedWorkExperiences);
       setWorkInput({ company: '', role: '', startYear: '', endYear: '' });
-      onWorkExperienceChange([...workExperiences, newWorkExperience]); // Send updated work experiences to parent
-      console.log('Updated work experiences:', [...workExperiences, newWorkExperience]); // Log updated work experiences
+      onWorkExperienceChange(updatedWorkExperiences); // Send updated work experiences to parent
     }
   };
 
@@ -23,16 +32,12 @@ const WorkExperience = ({ onWorkExperienceChange }) => {
     const updatedWorkExperiences = workExperiences.filter((_, i) => i !== index);
     setWorkExperiences(updatedWorkExperiences);
     onWorkExperienceChange(updatedWorkExperiences); // Send updated work experiences to parent
-    console.log('Updated work experiences:', updatedWorkExperiences); // Log updated work experiences
   };
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setWorkInput({ ...workInput, [name]: value });
   };
-
-  // Add a temporary console.log to ensure component rendering
-  console.log('WorkExperience Component Rendered. Work Experiences:', workExperiences);
 
   return (
     <div className="bg-gray-800 p-4 rounded-md">
@@ -69,7 +74,7 @@ const WorkExperience = ({ onWorkExperienceChange }) => {
           />
         </div>
         <div className="mb-2">
-          <label className="block mb-1">End Year ( Leave empty if still working here )</label>
+          <label className="block mb-1">End Year (Leave empty if still working here)</label>
           <input
             type="text"
             name="endYear"
@@ -93,7 +98,7 @@ const WorkExperience = ({ onWorkExperienceChange }) => {
             <div>
               <h3 className="text-lg">{work.company}</h3>
               <p>{work.role}</p>
-              <p>{work.startYear} - {work.endYear}</p>
+              <p>{work.startYear} - {work.endYear === new Date().getFullYear().toString() ? "Present" : work.endYear}</p>
             </div>
             <button
               onClick={() => removeWorkExperience(index)}

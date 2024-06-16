@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import ProjectCard from './ProjectCard';
 
-const Projects = ({ onProjectsChange }) => {
+const Projects = ({ formData , onProjectsChange }) => {
   const [projects, setProjects] = useState([]);
   const [projectInput, setProjectInput] = useState({
     name: '',
@@ -11,6 +11,10 @@ const Projects = ({ onProjectsChange }) => {
     status: 'Building',
     category: 'Web Application',
   });
+
+  useEffect(() => {
+    setProjects(formData || []);
+  }, [formData]);
 
   const addProject = () => {
     if (projectInput.name.trim() !== '') {

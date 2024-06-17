@@ -115,7 +115,7 @@ const Form = () => {
     } catch (error) {
       console.error('Error submitting profile details:', error);
     }
-    navigate('/payment');
+    navigate('/profilePicture');
   };
 
   useEffect(() => {

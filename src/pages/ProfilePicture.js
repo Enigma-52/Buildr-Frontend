@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from "../utils/firebase.utils"; // Import auth
+import { auth } from "../utils/firebase.utils";
 
 const ProfilePicture = () => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(auth.currentUser);
   const [profilePicture, setProfilePicture] = useState(null);
   const [file, setFile] = useState(null);
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
       if (!user) {
         navigate('/signin');
+      }
+      else {
+        setUserId(user.uid); 
       }
     });
 
@@ -21,15 +25,33 @@ const ProfilePicture = () => {
     };
   }, [navigate]);
 
+  useEffect(() => {
+    if (user) {
+      setTimeout(() => {
+        fetchProfilePictureFromBackend();
+      }, 500);
+    }
+  }, [user]);
+
+  const fetchProfilePictureFromBackend = async () => {
+    try {
+      const response = await fetch(`http://localhost:5000/api/getProfilePicture/${userId}`);
+        const data = await response.json();
+        console.log(data.data.profilePictureUrl);
+        setProfilePicture(data.data.profilePictureUrl);
+    } catch (error) {
+      console.error('Error fetching profile picture:', error);
+    }
+  };
+
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
 
-    // Optionally, you can preview the selected image
     if (selectedFile) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setProfilePicture(reader.result); // This sets the preview image URL
+        setProfilePicture(reader.result);
       };
       reader.readAsDataURL(selectedFile);
     } else {
@@ -61,6 +83,7 @@ const ProfilePicture = () => {
         console.error('Error uploading profile picture:', error);
       }
     }
+    navigate('/payment');
   };
 
   return (
@@ -70,7 +93,7 @@ const ProfilePicture = () => {
         {profilePicture ? (
           <div className="mb-4 text-center">
             <img src={profilePicture} alt="Profile" className="w-32 h-32 rounded-full mx-auto" />
-            <p className="mt-2">Selected Profile Picture</p>
+            <p className="mt-2">Current Profile Picture</p>
           </div>
         ) : (
           <p className="mb-4 text-center">No profile picture selected</p>
@@ -78,12 +101,14 @@ const ProfilePicture = () => {
         <input
           type="file"
           onChange={handleFileChange}
-          className="w-full mb-4 text-gray-900"
+          className="w-full mb-4 text-purple-500"
+          style={{ color: 'purple' }}
         />
         <button
           onClick={handleUpload}
           className="w-full px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-500 transition duration-300"
           disabled={!file}
+          style={{ display: 'block', margin: '0 auto' }}
         >
           {profilePicture ? 'Update Profile Picture' : 'Upload Profile Picture'}
         </button>

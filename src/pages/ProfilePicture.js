@@ -51,6 +51,7 @@ const ProfilePicture = () => {
 
         if (response.ok) {
           const data = await response.json();
+          console.log(data);
           setProfilePicture(data.profilePictureUrl);
           setFile(null);
         } else {

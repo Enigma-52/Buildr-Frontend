@@ -10,6 +10,7 @@ import useWindowSize from "react-use/lib/useWindowSize";
 const Payment = () => {
   const { width, height } = useWindowSize();
   const [user, setUser] = useState(null);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -82,7 +83,7 @@ const Payment = () => {
                     if (successResponse.ok) {
                       const data = await successResponse.json();
                       console.log(data);
-                      return <Confetti width={width} height={height} recycle={false} />;
+                      setShowConfetti(true);
                     } else {
                       const errorData = await successResponse.json();
                       console.error('Payment failed:', errorData);
@@ -108,6 +109,7 @@ const Payment = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+        {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Just one Last Step!</h2>
         <div className="flex flex-col space-y-4">

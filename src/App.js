@@ -8,6 +8,7 @@ import Form from './pages/Form';
 import Payment from './pages/Payment';
 import Username from './pages/Username';
 import ProfilePicture from './pages/ProfilePicture';
+import UserPage from './pages/UserPage';
 
 const pageVariants = {
   initial: {
@@ -41,6 +42,7 @@ function AnimatedRoutes() {
         <Route path="/payment" element={<PageWrapper><Payment /></PageWrapper>} />
         <Route path="/username" element={<PageWrapper><Username /></PageWrapper>} />
         <Route path="/profilePicture" element={<PageWrapper><ProfilePicture /></PageWrapper>} />
+        <Route path="/u/:username" element={<PageWrapper><UserPage /></PageWrapper>} />
       </Routes>
     </AnimatePresence>
   );

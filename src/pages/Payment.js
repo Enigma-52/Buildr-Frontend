@@ -4,8 +4,12 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils";
 import axios from "axios";
+import Confetti from "react-confetti";
+import useWindowSize from "react-use/lib/useWindowSize";
 
 const Payment = () => {
+  const { width, height } = useWindowSize();
+
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -64,20 +68,27 @@ const Payment = () => {
                     const paymentId = response.razorpay_payment_id;
                     const signature = response.razorpay_signature;
 
-                    const successResponse = await fetch('/paymentSuccess', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
-                        body: JSON.stringify({ orderId, paymentId, signature })
+                    console.log("hi");
+
+                    const successResponse = await fetch('http://localhost:5000/paymentSuccess', {
+                      method: 'POST',
+                      headers: {
+                        'Content-Type': 'application/json',
+                      },
+                      body: JSON.stringify({ orderId, paymentId, signature }),
                     });
-                      if (successResponse.status === 200) {
-                        // Payment successful, navigate to success page
-                        //navigate('/payment-success');
-                      } else {
-                        // Payment failed
-                        alert('Payment failed');
-                      }
+                
+                    console.log("Payment Response");
+                
+                    if (successResponse.ok) {
+                      const data = await successResponse.json();
+                      console.log(data);
+                      return <Confetti width={width} height={height} recycle={false} />;
+                    } else {
+                      const errorData = await successResponse.json();
+                      console.error('Payment failed:', errorData);
+                      alert('Payment failed');
+                    }
                 } catch (error) {
                     console.error('Error processing payment:', error);
                     alert('Payment failed');

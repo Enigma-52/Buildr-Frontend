@@ -1,3 +1,5 @@
+/* global Razorpay */
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils";
@@ -7,7 +9,6 @@ import useWindowSize from "react-use/lib/useWindowSize";
 
 const Payment = () => {
   const { width, height } = useWindowSize();
-
   const [user, setUser] = useState(null);
 
   useEffect(() => {

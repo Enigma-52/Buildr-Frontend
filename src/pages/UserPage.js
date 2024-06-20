@@ -8,7 +8,7 @@ const UserPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user/${username}`); // Replace with your backend endpoint
+        const response = await fetch(`http://localhost:5000/api/user/${username}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

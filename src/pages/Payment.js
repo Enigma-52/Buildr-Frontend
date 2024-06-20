@@ -11,6 +11,7 @@ const Payment = () => {
   const { width, height } = useWindowSize();
   const [user, setUser] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -84,6 +85,7 @@ const Payment = () => {
                       const data = await successResponse.json();
                       console.log(data);
                       setShowConfetti(true);
+                      setShowModal(true);
                     } else {
                       const errorData = await successResponse.json();
                       console.error('Payment failed:', errorData);
@@ -107,9 +109,26 @@ const Payment = () => {
     }
   };
 
+  const Modal = ({ show, onClose }) => {
+    if (!show) return null;
+
+    return (
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+  <div className="bg-black bg-opacity-50 absolute inset-0" onClick={onClose}></div>
+  <div className="bg-gray-800 rounded-lg p-8 z-10 max-w-sm mx-auto text-center shadow-lg">
+    <h2 className="text-3xl font-bold mb-4 text-white">Congratulations!</h2>
+    <p className="mb-6 text-white">Your profile is complete.</p>
+    <a href="/profile" className="block mb-4 text-blue-400 underline">View your profile</a>
+    <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">Close</button>
+  </div>
+</div>
+
+    );
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-        {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
+      {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Just one Last Step!</h2>
         <div className="flex flex-col space-y-4">
@@ -127,6 +146,7 @@ const Payment = () => {
           </button>
         </div>
       </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 };

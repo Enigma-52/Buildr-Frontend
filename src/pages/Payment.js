@@ -8,20 +8,27 @@ import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 
 const Payment = () => {
+  const navigate = useNavigate();
   const { width, height } = useWindowSize();
   const [user, setUser] = useState(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [userId, setUserId] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
       setUser(user);
+      if (!user) {
+        navigate('/signin');
+      }else {
+        setUserId(user.uid); 
+      }
     });
 
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [navigate]);
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -34,6 +41,31 @@ const Payment = () => {
 
   const processStripePayment = async () => {
   };
+
+  useEffect(() => {
+    const checker = async () => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/paidStatus/${userId}`);
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          const data = await response.json();
+          if(data.paidStatus === "true")
+            {
+              navigate()
+            }
+        } catch (error) {
+            console.error(error);
+            alert('An error occurred: ' + error.message);
+        }
+    };
+
+    if (user) {
+      setTimeout(() => {
+        checker();
+      }, 500);
+    }
+}, []);
 
   const processRazorpayPayment = async () => {
     const amount = 39;

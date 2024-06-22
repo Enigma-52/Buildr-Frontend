@@ -42,6 +42,7 @@ const Payment = () => {
   const processStripePayment = async () => {
   };
 
+  
   useEffect(() => {
     const checker = async () => {
         try {

@@ -55,12 +55,33 @@ const Username = () => {
         return <p>Loading...</p>;
       }
 
+      const isUsernameUnique = async (username) => {
+        try {
+          const response = await fetch(`http://localhost:5000/api/checkUsername/${username}?userId=${userId}`);
+          if (!response.ok) {
+            throw new Error('Failed to check username');
+          }
+          const data = await response.json();
+          return data.unique;
+        } catch (error) {
+          console.error('Error checking username uniqueness:', error);
+          return false;
+        }
+      };
+
+
 
       const handleInputChange = (e) => {
         setUsername(e.target.value);
       };
     
       const handleSubmit = async () => {
+
+        const unique = await isUsernameUnique(username);
+          if (!unique) {
+            alert('Username is not unique. Please choose another.');
+            return;
+          }
         
             const id = user.uid;
             console.log(id);

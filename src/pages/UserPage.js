@@ -13,6 +13,7 @@ const UserPage = () => {
           throw new Error('Network response was not ok');
         }
         const data = await response.json();
+        console.log(data);
         setUserData(data);
       } catch (error) {
         console.error('Error fetching user data:', error);
@@ -29,7 +30,7 @@ const UserPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-3xl font-bold mb-6 text-center">Welcome, {userData.name}</h2>
+        <h2 className="text-3xl font-bold mb-6 text-center">Welcome, {userData.personalInfo.name}</h2>
         <p className="text-center">Email: {userData.email}</p>
         {/* Add more user details as needed */}
       </div>

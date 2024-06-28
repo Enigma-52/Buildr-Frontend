@@ -13,6 +13,7 @@ const Form = () => {
 
   const navigate = useNavigate();
   const [user, setUser] = useState(null);
+  const [userId, setUserId] = useState('');
   const [formData, setFormData] = useState({
     personalInfo: {
       name: '',
@@ -31,6 +32,21 @@ const Form = () => {
     workExperience: [],
     projects: []
   });
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((user) => {
+      setUser(user);
+      if (!user) {
+        navigate('/signin');
+      }else {
+        setUserId(user.uid); 
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -118,18 +134,7 @@ const Form = () => {
     navigate('/profilePicture');
   };
 
-  useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
-      setUser(user);
-      if (!user) {
-        navigate('/signin');
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, [navigate]);
+  
 
   const handleLogout = async () => {
     try {

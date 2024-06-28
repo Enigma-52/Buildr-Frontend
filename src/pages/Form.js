@@ -100,17 +100,17 @@ const Form = () => {
 
   const handleSubmit = async () => {
     const payload = {
-      userId: user.uid,
-      personalInfo: formData.personalInfo,
-      socialLinks: formData.socialLinks,
-      education: formData.education,
-      workExperience: formData.workExperience,
-      projects: formData.projects
+      userId: user?.uid,
+      personalInfo: formData?.personalInfo,
+      socialLinks: formData?.socialLinks,
+      education: formData?.education,
+      workExperience: formData?.workExperience,
+      projects: formData?.projects
     };
+    console.log(payload);
 
     try {
       const response = await axios.post('http://localhost:5000/api/submitProfileDetails', payload);
-      console.log(payload);
       console.log(response.data.message);
     } catch (error) {
       console.error('Error submitting profile details:', error);

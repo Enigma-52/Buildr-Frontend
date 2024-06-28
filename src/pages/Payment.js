@@ -14,6 +14,7 @@ const Payment = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [userId, setUserId] = useState('');
+  const [username, setUsername] = useState('');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((user) => {
@@ -42,18 +43,43 @@ const Payment = () => {
   const processStripePayment = async () => {
   };
 
+  const updatePaidStatus = async (userId) => {
+    try {
+        const response = await fetch(`http://localhost:5000/api/updatePaidStatus?userId=${userId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+
+        const data = await response.json();
+    } catch (error) {
+        console.error('Error updating paid status:', error);
+    }
+};
+
   
   useEffect(() => {
     const checker = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/paidStatus/${userId}`);
+          const response = await fetch(`http://localhost:5000/api/paidStatus?userId=${userId}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
           const data = await response.json();
+          console.log("PAID STATUS");
+          console.log(data);
+          setUsername(data.username);
           if(data.paidStatus === "true")
             {
-              navigate()
+              console.log(username);
+              setTimeout(() => {
+                navigate(`/u/${data.username}`);
+              }, 200);
             }
         } catch (error) {
             console.error(error);
@@ -61,12 +87,12 @@ const Payment = () => {
         }
     };
 
-    if (user) {
+    if(userId){
       setTimeout(() => {
         checker();
       }, 500);
     }
-}, []);
+  }, [user?.uid]);
 
   const processRazorpayPayment = async () => {
     const amount = 39;
@@ -119,6 +145,8 @@ const Payment = () => {
                       console.log(data);
                       setShowConfetti(true);
                       setShowModal(true);
+
+                      await updatePaidStatus(userId);
                     } else {
                       const errorData = await successResponse.json();
                       console.error('Payment failed:', errorData);
@@ -151,7 +179,7 @@ const Payment = () => {
   <div className="bg-gray-800 rounded-lg p-8 z-10 max-w-sm mx-auto text-center shadow-lg">
     <h2 className="text-3xl font-bold mb-4 text-white">Congratulations!</h2>
     <p className="mb-6 text-white">Your profile is complete.</p>
-    <a href="/profile" className="block mb-4 text-blue-400 underline">View your profile</a>
+    <a href={`/u/${username}`} className="block mb-4 text-blue-400 underline">View your profile</a>
     <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">Close</button>
   </div>
 </div>

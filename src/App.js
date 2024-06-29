@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import Home from './pages/Home';
 import SignIn from './pages/SignIn';
 import Dashboard from './pages/Dashboard';

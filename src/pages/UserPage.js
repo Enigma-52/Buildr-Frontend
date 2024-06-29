@@ -27,8 +27,7 @@ const UserPage = () => {
   if (!userData) {
     return <div>Loading...</div>;
   }
-
-
+  
   const selectLastHalfYear = contributions => {
     const currentYear = new Date().getFullYear();
     const currentMonth = new Date().getMonth();
@@ -46,6 +45,7 @@ const UserPage = () => {
     });
   };
 
+  
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -55,7 +55,8 @@ const UserPage = () => {
             <img src={userData.profilePictureUrl} alt="Profile" className="w-32 h-32 bg-gray-500 rounded-full mb-4" />
             <h2 className="text-2xl font-semibold mb-2">{userData.displayName}</h2>
             <p className="text-gray-400">{userData.location}</p>
-            <p className="text-gray-400 mt-4 mb-4 text-center">{userData.personalInfo.bio}</p>
+            <p className="text-gray-400 mt-2 mb-2 text-center">{userData.personalInfo.bio}</p>
+            <p className="text-gray-400 pb-2"><i class="fa-solid fa-envelope"></i> { userData.personalInfo.email}</p>
             <div className="flex space-x-4 mb-6">
               {userData.socialLinks.github && (
                 <a 
@@ -68,7 +69,7 @@ const UserPage = () => {
                   <i className="fab fa-github"></i>
                 </a>
               )}
-              {userData.socialLinks.github && (
+              {userData.socialLinks.leetcode && (
                 <a 
                   href={`https://leetcode.com/u/${userData.socialLinks.leetcode}`} 
                   className="text-blue-400 hover:text-blue-600 transition-colors"

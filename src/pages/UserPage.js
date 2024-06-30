@@ -175,45 +175,62 @@ const UserPage = () => {
                 totalCount: '{{count}} contributions in the last half year',
               }}
                />
-            <h3 className="text-2xl font-semibold mt-6 mb-4">Education</h3>
-            {userData.education.map((edu, index) => (
-              <div key={index} className="bg-gray-800 p-4 mb-4 w-full rounded-lg">
-                <p className="font-semibold">{edu.institution}</p>
-                <p className="text-gray-400">{edu.degree}</p>
-                <p className="text-gray-400">{edu.startYear} - {edu.endYear || 'Present'}</p>
-              </div>
-            ))}
-          </div>
+            <h3 className="text-xl font-semibold mt-6 mb-4">Education</h3>
+              {userData.education.map((edu, index) => (
+                <div 
+                  key={index} 
+                  className="bg-gray-800 p-4 mb-4 w-full rounded-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600"
+                >
+                  <p className="font-semibold">{edu.institution}</p>
+                  <p className="text-gray-400">{edu.degree}</p>
+                  <p className="text-gray-400">{edu.startYear} - {edu.endYear || 'Present'}</p>
+                </div>
+              ))}
+            </div>
         </div>
 
         {/* Right Column */}
         <div className="md:col-span-2">
           <h3 className="text-2xl font-semibold mb-4">Projects</h3>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-              {userData.projects.map((project, index) => (
-                <div key={index} className="bg-gray-800 p-4 rounded-lg mb-4 relative">
-                  <h4 className="font-semibold text-xl mb-2">{project.name}</h4>
-                  <p className="text-gray-400 mb-2">{project.description}</p>
-                  <p className="text-blue-400 mb-2">{project.url}</p>
-                  <p className="text-gray-400 mb-2">Revenue/Users: {project.revenueUsers}</p>
-                  <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
-                    <span className={`${getStatusClass(project.status)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.status}</span>
-                    <span className={`${getCategoryClass(project.category)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.category}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-          <h3 className="text-2xl font-semibold mt-8 mb-4">Work Experience</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {userData.workExperience.map((exp, index) => (
-              <div key={index} className="bg-gray-800 p-4 rounded-lg mb-4">
-                <p className="font-semibold text-xl mb-2">{exp.company}</p>
-                <p className="text-gray-400 mb-2">{exp.role}</p>
-                <p className="text-gray-400">{exp.startYear} - {exp.endYear || 'Present'}</p>
+            {userData.projects.map((project, index) => (
+              <div 
+                key={index} 
+                className="bg-gray-800 p-4 rounded-lg mb-4 relative transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
+              >
+                <h4 className="font-semibold text-xl mb-2">{project.name}</h4>
+                <p className="text-gray-400 mb-2">{project.description}</p>
+                <a 
+                  href={project.url} 
+                  className="text-blue-400 mb-2 block hover:underline" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                >
+                  {project.url}
+                </a>
+                <p className="text-gray-400 mb-2">Revenue/Users: {project.revenueUsers}</p>
+                <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
+                  <span className={`${getStatusClass(project.status)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.status}</span>
+                  <span className={`${getCategoryClass(project.category)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.category}</span>
+                </div>
               </div>
             ))}
           </div>
+
+
+          <h3 className="text-2xl font-semibold mt-8 mb-4">Work Experience</h3>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+              {userData.workExperience.map((exp, index) => (
+                <div 
+                  key={index} 
+                  className="bg-gray-800 p-4 rounded-lg mb-4 transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
+                >
+                  <p className="font-semibold text-xl mb-2">{exp.company}</p>
+                  <p className="text-gray-400 mb-2">{exp.role}</p>
+                  <p className="text-gray-400">{exp.startYear} - {exp.endYear || 'Present'}</p>
+                </div>
+              ))}
+            </div>
           <div className="text-center mt-8 pt-6">
           <a href="http://localhost:3000/" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
             Create Your Own Buildr Page Now!

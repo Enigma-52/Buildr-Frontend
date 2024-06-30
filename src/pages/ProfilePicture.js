@@ -17,6 +17,7 @@ const ProfilePicture = () => {
       }
       else {
         setUserId(user.uid); 
+        setUser(user);
       }
     });
 
@@ -26,18 +27,17 @@ const ProfilePicture = () => {
   }, [navigate]);
 
   useEffect(() => {
-    if (user) {
-      setTimeout(() => {
-        fetchProfilePictureFromBackend();
-      }, 500);
+    if (userId) {
+      fetchProfilePictureFromBackend();
     }
-  }, [user]);
+  }, [userId]);  
+  
 
   const fetchProfilePictureFromBackend = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/getProfilePicture/${userId}`);
+      console.log(userId);
+      const response = await fetch(`http://localhost:5000/api/getProfilePicture?userId=${userId}`);
         const data = await response.json();
-        console.log(data.data.profilePictureUrl);
         setProfilePicture(data.data.profilePictureUrl);
     } catch (error) {
       console.error('Error fetching profile picture:', error);

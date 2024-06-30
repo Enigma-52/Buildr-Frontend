@@ -38,6 +38,42 @@ const Projects = ({ formData , onProjectsChange }) => {
     setProjectInput({ ...projectInput, [name]: value });
   };
 
+  const getStatusClass = (status) => {
+    switch (status) {
+      case 'Building':
+        return 'bg-yellow-500';
+      case 'Active':
+        return 'bg-green-500';
+      case 'Discontinued':
+        return 'bg-red-500';
+      case 'On hold':
+        return 'bg-orange-500';
+      default:
+        return 'bg-gray-500';
+    }
+  };
+
+  const getCategoryClass = (category) => {
+    switch (category) {
+      case 'Web Application':
+        return 'bg-blue-500';
+      case 'Mobile Application':
+        return 'bg-purple-500';
+      case 'Data Science':
+        return 'bg-indigo-500';
+      case 'Machine Learning':
+        return 'bg-teal-500';
+      case 'Artificial Intelligence':
+        return 'bg-pink-500';
+      case 'Blockchain':
+        return 'bg-yellow-600';
+      case 'Cybersecurity':
+        return 'bg-red-600';
+      default:
+        return 'bg-gray-500';
+    }
+  };
+
   return (
     <div className="bg-gray-800 p-4 rounded-md">
       <h2 className="text-xl mb-4">Projects</h2>

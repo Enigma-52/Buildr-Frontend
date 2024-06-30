@@ -2,9 +2,29 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import GitHubCalendar from 'react-github-calendar';
 
+const Modal = ({  onClose }) => (
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    <div className="bg-black bg-opacity-75 absolute inset-0" onClick={onClose}></div>
+    <div className="relative bg-gray-900 p-10 rounded shadow-lg text-black z-10 max-w-lg mx-auto">
+      <h2 className="text-4xl font-bold text-center mb-6 text-red-500">Payment Required!</h2>
+      <p className="text-center text-white text-lg mb-8">Please Visit Buildr to complete your payment</p>
+      <div className="flex justify-center">
+        <a 
+          href="http://localhost:3000/" 
+          className="px-6 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-700 transition duration-300"
+        >
+          Complete Payment
+        </a>
+      </div>
+    </div>
+  </div>
+);
+
+
 const UserPage = () => {
   const { username } = useParams();
   const [userData, setUserData] = useState(null);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -16,6 +36,11 @@ const UserPage = () => {
         const data = await response.json();
         console.log(data);
         setUserData(data);
+
+        if (data.paid === "false") {
+          setShowModal(true);
+        }
+
       } catch (error) {
         console.error('Error fetching user data:', error);
       }
@@ -48,6 +73,7 @@ const UserPage = () => {
   
   return (
     <div className="min-h-screen bg-gray-900 text-white p-6">
+      {showModal && <Modal onClose={() => setShowModal(false)} />}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Column */}
         <div className="md:col-span-1 p-6 rounded-lg shadow-lg">
@@ -113,9 +139,9 @@ const UserPage = () => {
                 totalCount: '{{count}} contributions in the last half year',
               }}
                />
-            <h3 className="text-xl font-semibold mt-6 mb-4">Education</h3>
+            <h3 className="text-2xl font-semibold mt-6 mb-4">Education</h3>
             {userData.education.map((edu, index) => (
-              <div key={index} className="bg-gray-700 p-4 mb-4 w-full rounded-lg">
+              <div key={index} className="bg-gray-800 p-4 mb-4 w-full rounded-lg">
                 <p className="font-semibold">{edu.institution}</p>
                 <p className="text-gray-400">{edu.degree}</p>
                 <p className="text-gray-400">{edu.startYear} - {edu.endYear || 'Present'}</p>
@@ -153,9 +179,9 @@ const UserPage = () => {
             ))}
           </div>
           <div className="text-center mt-8 pt-6">
-            <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
-              Create Your Own Buildr Page Now!
-            </button>
+          <a href="http://localhost:3000/" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
+            Create Your Own Buildr Page Now!
+          </a>
           </div>
         </div>
       </div>

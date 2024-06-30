@@ -3,6 +3,20 @@ import { signInWithGooglePopup } from "../utils/firebase.utils"
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils"
 
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
+const steps = [
+  'Sign in to Buildr',
+  'Select your Unique Username',
+  'Create your Buildr Profile',
+  'Upload your Profile Picture',
+  'Complete payment',
+  'View your Portfolio',
+];
+
 const SignIn = () => {
   const [user, setUser] = useState(null);
 
@@ -49,7 +63,42 @@ const SignIn = () => {
 };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+    <div className="min-h-screen flex flex-col  items-center justify-center bg-gray-900 text-white">
+      <div className="pb-20">
+              <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
+              <Stepper
+                activeStep={0}
+                alternativeLabel
+                sx={{
+                  bgcolor: 'transparent',
+                  '& .MuiStepLabel-label': {
+                    color: 'white !important',
+                  },
+                  '& .MuiStepConnector-line': {
+                    borderColor: 'white',
+                  },
+                  '& .MuiStepIcon-root': {
+                    color: 'primary.main',
+                    '&.Mui-active': {
+                      color: 'secondary.main',
+                    },
+                    '&.Mui-completed': {
+                      color: 'success.main',
+                    },
+                  },
+                  '& .MuiStepIcon-text': {
+                    fontSize: 20,
+                  },
+                }}
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+            </div>
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
         <button

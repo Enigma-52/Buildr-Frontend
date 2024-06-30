@@ -2,6 +2,20 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils";
 
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
+const steps = [
+  'Sign in to Buildr',
+  'Select your Unique Username',
+  'Create your Buildr Profile',
+  'Upload your Profile Picture',
+  'Complete payment',
+  'View your Portfolio',
+];
+
 const Username = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(auth.currentUser);
@@ -105,42 +119,77 @@ const Username = () => {
             navigate('/form');
         };
     
-  return (
-    
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full">
-        <h2 className="text-3xl font-bold mb-6 text-center">Enter Your Buildr Username</h2>
-        <div className="flex items-center mb-4">
-          <div className="bg-gray-700 text-white rounded-l-lg px-5 py-2">
-            <span className="text-xl" >buildr-waitlist.vercel.app/</span>
-          </div>
-          <input
-            type="text"
-            value={username}
-            onChange={handleInputChange}
-            placeholder="Type your username"
-            className="px-2 text-xl py-2 bg-gray-700 text-white rounded-r-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
-          />
-        </div>
-        <div className="pt-6">
-        <button
-          onClick={handleSubmit}
-          className="text-xl w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition duration-300"
-        >
-          Submit
-        </button>
-        </div>
-        <div className="pt-6">
-        <button
-            onClick={handleLogout}
-            className="text-xl w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition duration-300">
+        return (
           
-            Logout
-        </button>
-        </div>
-      </div>
-    </div>
-  );
+          <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+            <div className="pb-20">
+              <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
+              <Stepper
+                activeStep={1}
+                alternativeLabel
+                sx={{
+                  bgcolor: 'transparent',
+                  '& .MuiStepLabel-label': {
+                    color: 'white !important',
+                  },
+                  '& .MuiStepConnector-line': {
+                    borderColor: 'white',
+                  },
+                  '& .MuiStepIcon-root': {
+                    color: 'primary.main',
+                    '&.Mui-active': {
+                      color: 'secondary.main',
+                    },
+                    '&.Mui-completed': {
+                      color: 'success.main',
+                    },
+                  },
+                  '& .MuiStepIcon-text': {
+                    fontSize: 20,
+                  },
+                }}
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+            </div>
+            <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full">
+              <h2 className="text-3xl font-bold mb-6 text-center">Enter Your Buildr Username</h2>
+              <div className="flex items-center mb-4">
+                <div className="bg-gray-700 text-white rounded-l-lg px-5 py-2">
+                  <span className="text-xl">buildr-waitlist.vercel.app/</span>
+                </div>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={handleInputChange}
+                  placeholder="Type your username"
+                  className="px-2 text-xl py-2 bg-gray-700 text-white rounded-r-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-300"
+                />
+              </div>
+              <div className="pt-6">
+                <button
+                  onClick={handleSubmit}
+                  className="text-xl w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition duration-300"
+                >
+                  Submit
+                </button>
+              </div>
+              <div className="pt-6">
+                <button
+                  onClick={handleLogout}
+                  className="text-xl w-full px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-500 transition duration-300"
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+        );        
 };
 
 export default Username;

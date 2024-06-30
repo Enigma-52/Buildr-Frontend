@@ -7,6 +7,20 @@ import WorkExperience from '../components/Form/WorkExperience';
 import Projects from '../components/Form/Projects';
 import axios from 'axios';
 
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
+const steps = [
+  'Sign in to Buildr',
+  'Select your Unique Username',
+  'Create your Buildr Profile',
+  'Upload your Profile Picture',
+  'Complete payment',
+  'View your Portfolio',
+];
+
 const { getDocs, collection } = firestoreFunctions;
 
 const Form = () => {
@@ -151,6 +165,41 @@ const Form = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 text-white p-8 flex flex-col justify-center items-center">
+      <div className="">
+              <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
+              <Stepper
+                activeStep={2}
+                alternativeLabel
+                sx={{
+                  bgcolor: 'transparent',
+                  '& .MuiStepLabel-label': {
+                    color: 'white !important',
+                  },
+                  '& .MuiStepConnector-line': {
+                    borderColor: 'white',
+                  },
+                  '& .MuiStepIcon-root': {
+                    color: 'primary.main',
+                    '&.Mui-active': {
+                      color: 'secondary.main',
+                    },
+                    '&.Mui-completed': {
+                      color: 'success.main',
+                    },
+                  },
+                  '& .MuiStepIcon-text': {
+                    fontSize: 20,
+                  },
+                }}
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+            </div>
       <h1 className="text-4xl font-bold mb-8">Create your Buildr Profile</h1>
       <div className="w-full max-w-6xl flex space-x-8">
         <div className="w-1/3 space-y-4">

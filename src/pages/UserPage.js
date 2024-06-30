@@ -166,7 +166,7 @@ const UserPage = () => {
               )}
             </div>
 
-            <h3 className="text-xl font-semibold mb-4">GitHub Graph + Stats</h3>
+              <h3 className="text-xl font-semibold mb-4">GitHub Graph + Stats</h3>
               <GitHubCalendar 
               username={userData.socialLinks.github} 
               transformData={selectLastHalfYear} 
@@ -175,7 +175,7 @@ const UserPage = () => {
                 totalCount: '{{count}} contributions in the last half year',
               }}
                />
-            <h3 className="text-xl font-semibold mt-6 mb-4">Education</h3>
+              <h3 className="text-xl font-semibold mt-6 mb-4">Education</h3>
               {userData.education.map((edu, index) => (
                 <div 
                   key={index} 

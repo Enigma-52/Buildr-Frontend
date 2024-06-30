@@ -7,6 +7,20 @@ import axios from "axios";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 
+import Box from '@mui/material/Box';
+import Stepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+
+const steps = [
+  'Sign in to Buildr',
+  'Select your Unique Username',
+  'Create your Buildr Profile',
+  'Upload your Profile Picture',
+  'Complete payment',
+  'View your Portfolio',
+];
+
 const Payment = () => {
   const navigate = useNavigate();
   const { width, height } = useWindowSize();
@@ -180,7 +194,6 @@ const Payment = () => {
     <h2 className="text-3xl font-bold mb-4 text-white">Congratulations!</h2>
     <p className="mb-6 text-white">Your profile is complete.</p>
     <a href={`/u/${username}`} className="block mb-4 text-blue-400 underline">View your profile</a>
-    <button onClick={onClose} className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition duration-300">Close</button>
   </div>
 </div>
 
@@ -188,8 +201,43 @@ const Payment = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
       {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
+      <div className="pb-20">
+              <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
+              <Stepper
+                activeStep={4}
+                alternativeLabel
+                sx={{
+                  bgcolor: 'transparent',
+                  '& .MuiStepLabel-label': {
+                    color: 'white !important',
+                  },
+                  '& .MuiStepConnector-line': {
+                    borderColor: 'white',
+                  },
+                  '& .MuiStepIcon-root': {
+                    color: 'primary.main',
+                    '&.Mui-active': {
+                      color: 'secondary.main',
+                    },
+                    '&.Mui-completed': {
+                      color: 'success.main',
+                    },
+                  },
+                  '& .MuiStepIcon-text': {
+                    fontSize: 20,
+                  },
+                }}
+              >
+                {steps.map((label) => (
+                  <Step key={label}>
+                    <StepLabel>{label}</StepLabel>
+                  </Step>
+                ))}
+              </Stepper>
+            </Box>
+            </div>
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Just one Last Step!</h2>
         <div className="flex flex-col space-y-4">

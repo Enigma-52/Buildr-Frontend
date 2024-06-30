@@ -1,6 +1,10 @@
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils";
+
+import { Boxes } from "../components/ui/background-boxes.tsx";
+import { cn } from "../utils/cn.ts";
 
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
@@ -121,7 +125,8 @@ const Username = () => {
     
         return (
           
-          <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
+          <div className="relative min-h-screen w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+            <div className="absolute inset-0 w-full h-full bg-slate-900 z-0" style={{ maskImage: 'radial-gradient(transparent, white)' }} />               <Boxes />
             <div className="pb-20">
               <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
               <Stepper
@@ -157,8 +162,8 @@ const Username = () => {
               </Stepper>
             </Box>
             </div>
-            <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full">
-              <h2 className="text-3xl font-bold mb-6 text-center">Enter Your Buildr Username</h2>
+            <div className="z-40 bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full z-200">
+              <h2 className="text-3xl font-bold mb-6 text-center text-white">Enter Your Buildr Username</h2>
               <div className="flex items-center mb-4">
                 <div className="bg-gray-700 text-white rounded-l-lg px-5 py-2">
                   <span className="text-xl">buildr-waitlist.vercel.app/</span>

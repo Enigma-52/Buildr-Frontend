@@ -14,10 +14,9 @@ const WorkExperience = ({ formData, onWorkExperienceChange }) => {
   }, [formData]);
 
   const addWorkExperience = () => {
-    const currentYear = new Date().getFullYear().toString();
     const newWorkExperience = {
       ...workInput,
-      endYear: workInput.endYear ? workInput.endYear : currentYear,
+      endYear: workInput.endYear ? workInput.endYear : "Present",
     };
 
     if (workInput.company.trim() !== '') {
@@ -114,3 +113,6 @@ const WorkExperience = ({ formData, onWorkExperienceChange }) => {
 };
 
 export default WorkExperience;
+
+
+

@@ -86,6 +86,10 @@ const ProfilePicture = () => {
     navigate('/payment');
   };
 
+  const handleContinueWithCurrentPhoto = () => {
+    navigate('/payment');
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
@@ -112,6 +116,15 @@ const ProfilePicture = () => {
         >
           {profilePicture ? 'Update Profile Picture' : 'Upload Profile Picture'}
         </button>
+        {profilePicture && (
+          <button
+            onClick={handleContinueWithCurrentPhoto}
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition duration-300 mt-4"
+            style={{ display: 'block', margin: '10px auto' }}
+          >
+            Continue with Current Photo
+          </button>
+        )}
       </div>
     </div>
   );

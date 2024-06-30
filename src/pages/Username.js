@@ -126,7 +126,8 @@ const Username = () => {
         return (
           
           <div className="relative min-h-screen w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-            <div className="absolute inset-0 w-full h-full bg-slate-900 z-0" style={{ maskImage: 'radial-gradient(transparent, white)' }} />               <Boxes />
+            <div className="absolute inset-0 w-full h-full bg-slate-900 z-0" style={{ maskImage: 'radial-gradient(transparent, white)' }} />               
+            <Boxes />
             <div className="pb-20">
               <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
               <Stepper

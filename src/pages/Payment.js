@@ -7,6 +7,9 @@ import axios from "axios";
 import Confetti from "react-confetti";
 import useWindowSize from "react-use/lib/useWindowSize";
 
+import { Boxes } from "../components/ui/background-boxes.tsx";
+import { cn } from "../utils/cn.ts";
+
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -201,8 +204,10 @@ const Payment = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white">
-      {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
+<div className="relative min-h-screen w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+            <div className="absolute inset-0 w-full h-full bg-slate-900 z-0" style={{ maskImage: 'radial-gradient(transparent, white)' }} />               
+            <Boxes />
+                  {showConfetti && <Confetti numberOfPieces={600} tweenDuration={50000} width={width} height={height} recycle={false} />}
       <div className="pb-20">
               <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
               <Stepper
@@ -238,8 +243,8 @@ const Payment = () => {
               </Stepper>
             </Box>
             </div>
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-3xl font-bold mb-6 text-center">Just one Last Step!</h2>
+      <div className="z-40 bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 className="text-3xl text-white font-bold mb-6 text-center">Just one Last Step!</h2>
         <div className="flex flex-col space-y-4">
           <button
             onClick={processStripePayment}

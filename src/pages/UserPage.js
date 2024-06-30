@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import GitHubCalendar from 'react-github-calendar';
+import { BackgroundBeams } from "../components/ui/background-beams.tsx";
 
 const Modal = ({  onClose }) => (
   <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -112,7 +113,7 @@ const UserPage = () => {
       {showModal && <Modal onClose={() => setShowModal(false)} />}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Left Column */}
-        <div className="md:col-span-1 p-6 rounded-lg shadow-lg">
+        <div className="z-40 md:col-span-1 p-6 ">
           <div className="flex flex-col items-center mb-8">
             <img src={userData.profilePictureUrl} alt="Profile" className="w-32 h-32 bg-gray-500 rounded-full mb-4" />
             <h2 className="text-2xl font-semibold mb-2">{userData.displayName}</h2>
@@ -190,7 +191,7 @@ const UserPage = () => {
         </div>
 
         {/* Right Column */}
-        <div className="md:col-span-2">
+        <div className="z-40 md:col-span-2">
           <h3 className="text-2xl font-semibold mb-4">Projects</h3>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
             {userData.projects.map((project, index) => (
@@ -255,13 +256,9 @@ const UserPage = () => {
           
         </div>
       </div>
+      <BackgroundBeams />
     </div>
   );
 }
 
 export default UserPage;
-
-
-{/* <button className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
-  Gradient
-</button> */}

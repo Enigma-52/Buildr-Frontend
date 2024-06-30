@@ -3,6 +3,9 @@ import { signInWithGooglePopup } from "../utils/firebase.utils"
 import { useNavigate } from 'react-router-dom';
 import { auth } from "../utils/firebase.utils"
 
+import { Boxes } from "../components/ui/background-boxes.tsx";
+import { cn } from "../utils/cn.ts";
+
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -63,8 +66,10 @@ const SignIn = () => {
 };
 
   return (
-    <div className="min-h-screen flex flex-col  items-center justify-center bg-gray-900 text-white">
-      <div className="pb-20">
+<div className="relative min-h-screen w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
+            <div className="absolute inset-0 w-full h-full bg-slate-900 z-0" style={{ maskImage: 'radial-gradient(transparent, white)' }} />               
+            <Boxes />
+                  <div className="pb-20">
               <Box sx={{ width: '100%', mx: 'auto', my: 5 }}>
               <Stepper
                 activeStep={0}
@@ -99,8 +104,8 @@ const SignIn = () => {
               </Stepper>
             </Box>
             </div>
-      <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h2 className="text-3xl font-bold mb-6 text-center">Sign In</h2>
+      <div className="z-50 bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 className="text-3xl text-white font-bold mb-6 text-center">Sign In</h2>
         <button
           onClick={logGoogleUser}
           className="w-full px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition duration-300"

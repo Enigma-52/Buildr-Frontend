@@ -7,6 +7,8 @@ import WorkExperience from '../components/Form/WorkExperience';
 import Projects from '../components/Form/Projects';
 import axios from 'axios';
 
+import { BackgroundBeams } from "../components/ui/background-beams.tsx";
+
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -201,7 +203,7 @@ const Form = () => {
             </Box>
             </div>
       <h1 className="text-4xl font-bold mb-8">Create your Buildr Profile</h1>
-      <div className="w-full max-w-6xl flex space-x-8">
+      <div className="z-40 w-full max-w-6xl flex space-x-8">
         <div className="w-1/3 space-y-4">
           <ProfileDetails 
             formData={formData} 
@@ -224,10 +226,10 @@ const Form = () => {
           />
         </div>
       </div>
-      <div className="py-3">
+      <div className="z-40  py-3">
         <button className="bg-red-600 p-2 rounded-md py-2" onClick={handleSubmit}>Submit</button>
       </div>
-      <div className="mt-8 text-center">
+      <div className="z-40 mt-8 text-center">
         <button
           onClick={handleLogout}
           className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
@@ -235,6 +237,7 @@ const Form = () => {
           Logout
         </button>
       </div>
+      <BackgroundBeams />
     </div>
   );
 };

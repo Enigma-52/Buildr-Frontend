@@ -161,8 +161,8 @@ const UserPage = () => {
                   <p className="text-blue-400 mb-2">{project.url}</p>
                   <p className="text-gray-400 mb-2">Revenue/Users: {project.revenueUsers}</p>
                   <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
-                    <span className="bg-green-500 text-gray-900 text-sm px-2 py-1 rounded">{project.status}</span>
-                    <span className="bg-purple-500 text-gray-900 text-sm px-2 py-1 rounded">{project.category}</span>
+                    <span className={`${getStatusClass(project.status)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.status}</span>
+                    <span className={`${getCategoryClass(project.category)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.category}</span>
                   </div>
                 </div>
               ))}

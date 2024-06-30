@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { auth } from "../utils/firebase.utils"
+import { auth } from "../utils/firebase.utils";
 
 const Username = () => {
     const navigate = useNavigate();
@@ -106,6 +106,7 @@ const Username = () => {
         };
     
   return (
+    
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full">
         <h2 className="text-3xl font-bold mb-6 text-center">Enter Your Buildr Username</h2>

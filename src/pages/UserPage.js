@@ -210,13 +210,22 @@ const UserPage = () => {
                 </a>
                 <p className="text-gray-400 mb-2">Revenue/Users: {project.revenueUsers}</p>
                 <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
-                  <span className={`${getStatusClass(project.status)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.status}</span>
-                  <span className={`${getCategoryClass(project.category)} text-gray-900 text-sm px-2 py-1 rounded`}>{project.category}</span>
+                  <button
+                    title={`Status: ${project.status}`}
+                    className={`${getStatusClass(project.status)} px-4 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-blue-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
+                  >
+                    {project.status}
+                  </button>
+                  <button
+                    title={`Category: ${project.category}`}
+                    className={`${getCategoryClass(project.category)} px-4 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-green-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
+                  >
+                    {project.category}
+                  </button>
                 </div>
               </div>
             ))}
           </div>
-
 
           <h3 className="text-2xl font-semibold mt-8 mb-4">Work Experience</h3>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -231,11 +240,19 @@ const UserPage = () => {
                 </div>
               ))}
             </div>
+            
           <div className="text-center mt-8 pt-6">
-          <a href="http://localhost:3000/" className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-blue-500 transition duration-300">
-            Create Your Own Buildr Page Now!
-          </a>
+          <a
+              href="http://localhost:3000/"
+              className="p-[3px] relative inline-block"
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />
+              <div className="px-8 py-2 bg-black rounded-[6px] relative group transition duration-200 text-white hover:bg-transparent">
+                Create Your Own Buildr Page Now!
+              </div>
+            </a>
           </div>
+          
         </div>
       </div>
     </div>
@@ -243,3 +260,8 @@ const UserPage = () => {
 }
 
 export default UserPage;
+
+
+{/* <button className="px-8 py-2 rounded-full bg-gradient-to-b from-blue-500 to-blue-600 text-white focus:ring-2 focus:ring-blue-400 hover:shadow-xl transition duration-200">
+  Gradient
+</button> */}

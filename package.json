@@ -16,9 +16,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.7.2",
+    "clsx": "^2.1.1",
     "firebase": "^10.12.2",
     "firebase-admin": "^12.1.1",
-    "framer-motion": "^11.2.10",
+    "framer-motion": "^11.2.12",
     "razorpay": "^2.9.4",
     "react": "^18.3.1",
     "react-confetti": "^6.1.0",
@@ -32,6 +33,7 @@
     "react-transition-group": "^4.4.5",
     "react-use": "^17.5.0",
     "styled-components": "^6.1.11",
+    "tailwind-merge": "^2.3.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

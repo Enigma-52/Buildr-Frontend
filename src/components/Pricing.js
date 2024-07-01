@@ -13,8 +13,8 @@ const Pricing = () => {
         <div className="bg-gradient-to-b from-purple-300 to-purple-600">
             <div className="container m-auto px-6 py-20 md:px-12 lg:px-20">
                 <div className="m-auto text-center lg:w-8/12 xl:w-7/12">
-                    <h2 className="text-2xl text-black font-bold md:text-4xl py-2">Create your Buildr Page for free</h2>
-                    <h5 className="text-md text-gray-600 md:text-2xl">Get the lifetime deal when you are ready to publish!</h5>
+                    <h2 className="text-2xl text-black font-bold md:text-4xl py-2">Create your Buildr Page for Free!</h2>
+                    <h5 className="text-md text-gray-600 md:text-2xl">Get the lifetime deal when you are ready to publish</h5>
                 </div>
                 <div className="mt-12 m-auto -space-y-4 items-center justify-center md:flex md:space-y-0 md:-space-x-4 xl:w-10/12">
                     <div className="py-12 relative z-10 -mx-4 group md:w-6/12 md:mx-0 lg:w-5/12">

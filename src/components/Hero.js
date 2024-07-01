@@ -161,23 +161,23 @@ const Hero = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="px-6 text-lg text-gray-300 font-inter">
-              Smart email campaign builder, made for Developers
+                Smart Portfolio Builder for Developers
             </h1>
             <p className="mt-5 text-4xl font-bold leading-tight text-white sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight font-pj">
-              Turn your visitors into profitable
+                Showcase your profile and land
               <span className="relative inline-flex sm:inline">
                 <span className="bg-gradient-to-r from-[#7F00FF] via-[#E100FF] to-[#FF7C7C] blur-lg filter opacity-30 w-full h-full absolute inset-0"></span>
-                <span className="relative"> business </span>
+                <span className="relative"> opportunities </span>
               </span>
             </p>
             <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
               <a
-                href="#"
+                href="http://localhost:3000/signin"
                 title=""
                 className="inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-purple-600 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
                 role="button"
               >
-                Get more customers
+                Get Started!
               </a>
               <a
                 href="#"
@@ -185,7 +185,7 @@ const Hero = () => {
                 className="text-white inline-flex items-center justify-center w-full px-6 py-3 mt-4 text-lg font-bold text-black transition-all duration-200 border-2 border-purple-600 sm:w-auto sm:mt-0 rounded-xl font-pj focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600 hover:bg-black focus:bg-black hover:text-white focus:text-white hover:border-purple-600 focus:border-purple-600"
                 role="button"
               >
-                Watch free demo
+                How it Works
               </a>
             </div>
           </div>

@@ -9,7 +9,7 @@ const HowItWorks = () => {
             How does it work?
           </h2>
           <p className="max-w-lg mx-auto mt-4 text-base leading-relaxed text-gray-800">
-            A step-by-step guide to help you get started with our service. Follow these simple steps to begin your journey.
+            A step-by-step guide to help you get started. Follow these simple steps to begin your journey.
           </p>
         </div>
 
@@ -19,46 +19,47 @@ const HowItWorks = () => {
               className="w-full"
               src="https://cdn.rareblocks.xyz/collection/celebration/images/steps/2/curved-dotted-line.svg"
               alt="Curved Dotted Line"
+              style={{ filter: "brightness(0) saturate(100%)" }}
             />
           </div>
 
           <div className="relative grid grid-cols-1 text-center gap-y-12 md:grid-cols-3 gap-x-12">
             {/* Step 1 */}
             <div>
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl hover:bg-gray-800 transition duration-300">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl transition duration-300">
                 <span className="text-2xl font-bold text-gray-900">1</span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
                 Create an Account
               </h3>
               <p className="mt-4 text-base text-gray-800">
-                Sign up for a free account to start building your online presence.
+                Sign up and choose your Unique Portfolio URL
               </p>
             </div>
 
             {/* Step 2 */}
             <div>
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl hover:bg-gray-800 transition duration-300">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl transition duration-300">
                 <span className="text-2xl font-bold text-gray-900">2</span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
                 Build Your Website
               </h3>
               <p className="mt-4 text-base text-gray-800">
-                Use our tools to design and create a stunning website that suits your needs.
+                Use our tools to create your stunning portfolio
               </p>
             </div>
 
             {/* Step 3 */}
             <div>
-              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl hover:bg-gray-800 transition duration-300">
+              <div className="flex items-center justify-center w-16 h-16 mx-auto bg-white border-2 border-gray-700 rounded-full shadow-xl transition duration-300">
                 <span className="text-2xl font-bold text-gray-900">3</span>
               </div>
               <h3 className="mt-6 text-xl font-semibold leading-tight text-black md:mt-10">
                 Launch & Grow
               </h3>
               <p className="mt-4 text-base text-gray-800">
-                Publish your website and start growing your online presence with our advanced features.
+                Publish your website and start attracting potential employers for opportunities
               </p>
             </div>
           </div>

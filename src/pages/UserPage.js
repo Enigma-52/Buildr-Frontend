@@ -256,7 +256,7 @@ const UserPage = () => {
           
         </div>
       </div>
-      <BackgroundBeams />
+      {/* <BackgroundBeams /> */}
     </div>
   );
 }

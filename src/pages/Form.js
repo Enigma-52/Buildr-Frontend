@@ -237,7 +237,7 @@ const Form = () => {
           Logout
         </button>
       </div>
-      <BackgroundBeams />
+      {/* <BackgroundBeams /> */}
     </div>
   );
 };

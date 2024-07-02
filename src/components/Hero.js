@@ -161,7 +161,7 @@ const Hero = () => {
         <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="max-w-2xl mx-auto text-center">
             <h1 className="px-6 text-lg text-gray-300 font-inter">
-                Smart Portfolio Builder for Developers
+                Linktree for Developers
             </h1>
             <p className="mt-5 text-4xl font-bold leading-tight text-white sm:leading-tight sm:text-5xl lg:text-6xl lg:leading-tight font-pj">
                 Showcase your profile and land

@@ -167,7 +167,7 @@ const Username = () => {
               <h2 className="text-3xl font-bold mb-6 text-center text-white">Enter Your Buildr Username</h2>
               <div className="flex items-center mb-4">
                 <div className="bg-gray-700 text-white rounded-l-lg px-5 py-2">
-                  <span className="text-xl">buildr-waitlist.vercel.app/</span>
+                  <span className="text-xl">mybuildr.online/u/</span>
                 </div>
                 <input
                   type="text"

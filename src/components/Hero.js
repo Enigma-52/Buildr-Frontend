@@ -172,7 +172,7 @@ const Hero = () => {
             </p>
             <div className="px-8 sm:items-center sm:justify-center sm:px-0 sm:space-x-5 sm:flex mt-9">
               <a
-                href="http://localhost:3000/signin"
+                href="/signin"
                 title=""
                 className="inline-flex items-center justify-center w-full px-8 py-3 text-lg font-bold text-white transition-all duration-200 bg-purple-600 border-2 border-transparent sm:w-auto rounded-xl font-pj hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
                 role="button"

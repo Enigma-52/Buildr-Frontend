@@ -62,7 +62,7 @@ const Payment = () => {
 
   const updatePaidStatus = async (userId) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/updatePaidStatus?userId=${userId}`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/updatePaidStatus?userId=${userId}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -83,7 +83,7 @@ const Payment = () => {
   useEffect(() => {
     const checker = async () => {
         try {
-          const response = await fetch(`http://localhost:5000/api/paidStatus?userId=${userId}`);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/paidStatus?userId=${userId}`);
           if (!response.ok) {
             throw new Error('Network response was not ok');
           }
@@ -117,7 +117,7 @@ const Payment = () => {
     const receipt = 'Buildr Profile Lifetime Fee';
 
     try {
-        const response = await fetch('http://localhost:5000/createPayment', {
+        const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/createPayment', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -147,7 +147,7 @@ const Payment = () => {
 
                     console.log("hi");
 
-                    const successResponse = await fetch('http://localhost:5000/paymentSuccess', {
+                    const successResponse = await fetch('${process.env.REACT_APP_BACKEND_URL}/paymentSuccess', {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',

@@ -53,7 +53,7 @@ const ProfilePicture = () => {
   const fetchProfilePictureFromBackend = async () => {
     try {
       console.log(userId);
-      const response = await fetch(`http://localhost:5000/api/getProfilePicture?userId=${userId}`);
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getProfilePicture?userId=${userId}`);
         const data = await response.json();
         setProfilePicture(data.data.profilePictureUrl);
     } catch (error) {
@@ -83,7 +83,7 @@ const ProfilePicture = () => {
       formData.append('userId', user.uid);
 
       try {
-        const response = await fetch('http://localhost:5000/api/uploadProfilePicture', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/uploadProfilePicture`, {
           method: 'POST',
           body: formData,
         });

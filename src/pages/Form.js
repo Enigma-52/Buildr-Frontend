@@ -142,7 +142,7 @@ const Form = () => {
     console.log(payload);
 
     try {
-      const response = await axios.post('http://localhost:5000/api/submitProfileDetails', payload);
+      const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/submitProfileDetails`, payload);
       console.log(response.data.message);
     } catch (error) {
       console.error('Error submitting profile details:', error);

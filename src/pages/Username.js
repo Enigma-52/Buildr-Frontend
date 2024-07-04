@@ -45,7 +45,7 @@ const Username = () => {
         if (user?.uid) {
             const fetchUsername = async () => {
                 try {
-                    const response = await fetch(`http://localhost:5000/api/getUsername?userId=${user.uid}`);
+                    const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/getUsername?userId=${user.uid}`);
                     if (!response.ok) {
                         throw new Error('Failed to fetch username');
                     }
@@ -75,7 +75,7 @@ const Username = () => {
 
       const isUsernameUnique = async (username) => {
         try {
-          const response = await fetch(`http://localhost:5000/api/checkUsername/${username}?userId=${userId}`);
+          const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/checkUsername/${username}?userId=${userId}`);
           if (!response.ok) {
             throw new Error('Failed to check username');
           }
@@ -103,7 +103,7 @@ const Username = () => {
         
             const id = user.uid;
             console.log(id);
-            const response = await fetch('http://localhost:5000/api/buildrUsername', {
+            const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/buildrUsername', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

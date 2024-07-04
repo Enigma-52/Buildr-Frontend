@@ -11,7 +11,7 @@ const Modal = ({  onClose }) => (
       <p className="text-center text-white text-lg mb-8">Please Visit Buildr to complete your payment</p>
       <div className="flex justify-center">
         <a 
-          href="http://localhost:3000/" 
+          href="/" 
           className="px-6 py-3 bg-blue-500 text-white text-lg rounded-lg hover:bg-blue-700 transition duration-300"
         >
           Complete Payment
@@ -30,7 +30,7 @@ const UserPage = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/user/${username}`);
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/user/${username}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }

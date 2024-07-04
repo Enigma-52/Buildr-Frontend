@@ -109,7 +109,7 @@ const Username = () => {
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    userId,
+                    userId : id,
                     username,
                 }),
             });

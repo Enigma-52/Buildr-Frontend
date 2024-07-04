@@ -103,7 +103,7 @@ const Username = () => {
         
             const id = user.uid;
             console.log(id);
-            const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/api/buildrUsername', {
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/buildrUsername`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

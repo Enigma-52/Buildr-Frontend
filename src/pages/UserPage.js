@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import GitHubCalendar from 'react-github-calendar';
 import { BackgroundBeams } from "../components/ui/background-beams.tsx";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faGears, faCheck, faTimes, faHandPaper } from '@fortawesome/free-solid-svg-icons';
+import { faGlobe, faMobileAlt, faChartBar, faRobot, faBrain, faCube, faShieldAlt } from '@fortawesome/free-solid-svg-icons';
+
 
 const Modal = ({  onClose }) => (
   <div className="fixed inset-0 flex items-center justify-center z-50">
@@ -86,6 +90,23 @@ const UserPage = () => {
     }
   };
 
+  const getStatusIcon = (status) => {
+    switch (status) {
+      case 'Building':
+        return <FontAwesomeIcon icon={faGears} style={{marginRight: '0.5rem' }} />;
+      case 'Active':
+        return <FontAwesomeIcon icon={faCheck} style={{ color: 'blue' , marginRight: '0.5rem' }} />;
+      case 'Discontinued':
+        return <FontAwesomeIcon icon={faTimes} style={{ color: '#f4450b' , marginRight: '0.5rem' }} />;
+      case 'On hold':
+        return <FontAwesomeIcon icon={faHandPaper} style={{ marginRight: '0.5rem' }} />;
+      default:
+        return null;
+    }
+  };
+  
+  
+
   const getCategoryClass = (category) => {
     switch (category) {
       case 'Web Application':
@@ -106,6 +127,28 @@ const UserPage = () => {
         return 'bg-gray-500';
     }
   };
+
+  const getCategoryIcon = (category) => {
+    switch (category) {
+      case 'Web Application':
+        return <FontAwesomeIcon icon={faGlobe} style={{ marginRight: '0.5rem' }} />;
+      case 'Mobile Application':
+        return <FontAwesomeIcon icon={faMobileAlt} style={{ marginRight: '0.5rem' }} />;
+      case 'Data Science':
+        return <FontAwesomeIcon icon={faChartBar} style={{ marginRight: '0.5rem' }} />;
+      case 'Machine Learning':
+        return <FontAwesomeIcon icon={faRobot} style={{ marginRight: '0.5rem' }} />;
+      case 'Artificial Intelligence':
+        return <FontAwesomeIcon icon={faBrain} style={{ marginRight: '0.5rem' }} />;
+      case 'Blockchain':
+        return <FontAwesomeIcon icon={faCube} style={{ marginRight: '0.5rem' }} />;
+      case 'Cybersecurity':
+        return <FontAwesomeIcon icon={faShieldAlt} style={{ marginRight: '0.5rem' }} />;
+      default:
+        return null;
+    }
+  };
+  
 
   
   return (
@@ -213,15 +256,15 @@ const UserPage = () => {
                 <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
                   <button
                     title={`Status: ${project.status}`}
-                    className={`${getStatusClass(project.status)} px-4 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-blue-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
+                    className={`${getStatusClass(project.status)} px-1 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-blue-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
                   >
-                    {project.status}
+                    {getStatusIcon(project.status)}  {project.status}
                   </button>
                   <button
                     title={`Category: ${project.category}`}
-                    className={`${getCategoryClass(project.category)} px-4 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-green-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
+                    className={`${getCategoryClass(project.category)} px-1 py-1 text-sm rounded-full text-black focus:ring-2 focus:ring-green-400 hover:shadow-lg transition duration-200 flex items-center justify-center`}
                   >
-                    {project.category}
+                    {getCategoryIcon(project.category)}{project.category}
                   </button>
                 </div>
               </div>

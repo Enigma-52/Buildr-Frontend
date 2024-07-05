@@ -214,10 +214,11 @@ const UserPage = () => {
               <GitHubCalendar 
               username={userData.socialLinks.github} 
               transformData={selectLastHalfYear} 
-              hideColorLegend
               labels={{
                 totalCount: '{{count}} contributions in the last half year',
               }}
+              blockRadius={2}
+              colorScheme='light'
                />
               <h3 className="text-xl font-semibold mt-6 mb-4">Education</h3>
               {userData.education.map((edu, index) => (
@@ -225,9 +226,9 @@ const UserPage = () => {
                   key={index} 
                   className="bg-gray-800 p-4 mb-4 w-full rounded-lg transform transition-transform duration-300 hover:scale-105 hover:bg-gray-600"
                 >
-                  <p className="font-semibold">{edu.institution}</p>
-                  <p className="text-gray-400">{edu.degree}</p>
-                  <p className="text-gray-400">{edu.startYear} - {edu.endYear || 'Present'}</p>
+                  <p className="font-bold">{edu.institution}</p>
+                  <p className="text-gray-300">{edu.degree}</p>
+                  <p className="text-gray-300">{edu.startYear} - {edu.endYear || 'Present'}</p>
                 </div>
               ))}
             </div>
@@ -242,8 +243,8 @@ const UserPage = () => {
                 key={index} 
                 className="bg-gray-800 p-4 rounded-lg mb-4 relative transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
               >
-                <h4 className="font-semibold text-xl mb-2">{project.name}</h4>
-                <p className="text-gray-400 mb-2">{project.description}</p>
+                <h4 className="font-bold text-xl mb-2">{project.name}</h4>
+                <p className="text-gray-300 mb-2">{project.description}</p>
                 <a 
                   href={project.url} 
                   className="text-blue-400 mb-2 block hover:underline" 
@@ -252,7 +253,7 @@ const UserPage = () => {
                 >
                   {project.url}
                 </a>
-                <p className="text-gray-400 mb-2">Revenue/Users: {project.revenueUsers}</p>
+                <p className="text-gray-300 mb-2">Revenue/Users: {project.revenueUsers}</p>
                 <div className="text-center grid grid-cols-2 gap-2 absolute right-4 top-4">
                   <button
                     title={`Status: ${project.status}`}
@@ -278,9 +279,9 @@ const UserPage = () => {
                   key={index} 
                   className="bg-gray-800 p-4 rounded-lg mb-4 transform transition-transform duration-300 hover:scale-105 hover:bg-gray-700"
                 >
-                  <p className="font-semibold text-xl mb-2">{exp.company}</p>
-                  <p className="text-gray-400 mb-2">{exp.role}</p>
-                  <p className="text-gray-400">{exp.startYear} - {exp.endYear || 'Present'}</p>
+                  <p className="font-bold text-xl mb-2">{exp.company}</p>
+                  <p className="text-gray-300 mb-2">{exp.role}</p>
+                  <p className="text-gray-300">{exp.startYear} - {exp.endYear || 'Present'}</p>
                 </div>
               ))}
             </div>

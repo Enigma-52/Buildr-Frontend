@@ -155,7 +155,6 @@ const UserPage = () => {
     <div className="min-h-screen bg-gray-900 text-white p-6">
       {showModal && <Modal onClose={() => setShowModal(false)} />}
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
-        {/* Left Column */}
         <div className="z-40 md:col-span-1 p-6 ">
           <div className="flex flex-col items-center mb-8">
             <img src={userData.profilePictureUrl} alt="Profile" className="w-32 h-32 bg-gray-500 rounded-full mb-4" />
@@ -233,6 +232,8 @@ const UserPage = () => {
               ))}
             </div>
         </div>
+        
+        
 
         {/* Right Column */}
         <div className="z-40 md:col-span-2">

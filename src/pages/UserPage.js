@@ -289,7 +289,7 @@ const UserPage = () => {
             
           <div className="text-center mt-8 pt-6">
           <a
-              href="http://localhost:3000/"
+              href="/"
               className="p-[3px] relative inline-block"
             >
               <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-lg" />

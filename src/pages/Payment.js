@@ -137,7 +137,7 @@ const Payment = () => {
         const orderAmount = data.amount;
 
         const options = {
-            key: "rzp_live_7JqiPE4saN5shC",
+            key: "rzp_test_XdgJ8jN5qxBsfE",
             amount: orderAmount,
             currency: currency,
 

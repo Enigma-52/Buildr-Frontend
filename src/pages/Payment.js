@@ -119,7 +119,7 @@ const Payment = () => {
   };
 
   const processRazorpayPayment = async () => {
-    const amount = 39;
+    const amount = 3;
     const currency = 'INR';
     const receipt = 'Buildr Profile Lifetime Fee';
 
@@ -137,7 +137,7 @@ const Payment = () => {
         const orderAmount = data.amount;
 
         const options = {
-            key: "rzp_test_KLT9mlioFTVucO",
+            key: "rzp_live_7JqiPE4saN5shC",
             amount: orderAmount,
             currency: currency,
 

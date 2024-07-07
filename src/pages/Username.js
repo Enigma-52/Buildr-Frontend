@@ -164,7 +164,7 @@ const Username = () => {
             </Box>
             </div>
             <div className="z-40 bg-gray-800 p-8 rounded-lg shadow-lg max-w-xl w-full z-200">
-              <h2 className="text-3xl font-bold mb-6 text-center text-white">Enter Your Buildr Username</h2>
+              <h2 className="text-3xl font-bold mb-6 text-center text-white">Choose Your Unique URL</h2>
               <div className="flex items-center mb-4">
                 <div className="bg-gray-700 text-white rounded-l-lg px-5 py-2">
                   <span className="text-xl">buildr-blue.vercel.app/u/</span>

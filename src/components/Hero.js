@@ -94,16 +94,16 @@ const Hero = () => {
 
             <div className="hidden lg:ml-auto lg:flex lg:items-center lg:space-x-10">
               <a
-                href="#"
+                href="/signin"
                 title=""
                 className="text-base font-medium text-white transition-all duration-200 rounded focus:outline-none hover:text-purple-400 focus:ring-1 focus:ring-purple-600 focus:ring-offset-2"
               >
               </a>
               <a
-                href="#"
+                href="/signin"
                 title=""
                 className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-white transition-all duration-200 bg-purple-600 border border-transparent rounded-xl hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
-                role="button"
+                
               >
                 Sign up
               </a>
@@ -143,7 +143,7 @@ const Hero = () => {
                     Customer Login
                   </a>
                   <a
-                    href="#"
+                    href="/signin"
                     title=""
                     className="inline-flex items-center justify-center px-6 py-3 text-base font-bold leading-7 text-white transition-all duration-200 bg-purple-600 border border-transparent rounded-xl hover:bg-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-600"
                     role="button"

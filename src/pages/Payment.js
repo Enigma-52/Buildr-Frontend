@@ -111,6 +111,13 @@ const Payment = () => {
     }
   }, [user?.uid]);
 
+  const freePaymentSpecial = async () => {
+    setShowConfetti(true);
+    setShowModal(true);
+
+    await updatePaidStatus(userId);
+  };
+
   const processRazorpayPayment = async () => {
     const amount = 39;
     const currency = 'INR';
@@ -246,18 +253,25 @@ const Payment = () => {
       <div className="z-40 bg-gray-800 p-8 rounded-lg shadow-lg max-w-md w-full">
         <h2 className="text-3xl text-white font-bold mb-6 text-center">Just one Last Step!</h2>
         <div className="flex flex-col space-y-4">
+        <button
+            onClick={freePaymentSpecial}
+            className="w-full px-4 py-2 bg-gray-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
+          >
+            Generate for Free!(For Limited Time Only)
+          </button>
+        <button
+            onClick={processRazorpayPayment}
+            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
+          >
+            Contribute ₹39 via Razorpay(Live)
+          </button>
           <button
             onClick={processStripePayment}
             className="w-full px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-green-500 transition duration-300"
           >
-            Pay ₹39 via Stripe (Coming Soon)
+            Contribute ₹39 via Stripe (Coming Soon)
           </button>
-          <button
-            onClick={processRazorpayPayment}
-            className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
-          >
-            Pay ₹39 via Razorpay
-          </button>
+          
         </div>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)} />

@@ -25,7 +25,7 @@ const Pricing = () => {
                                 <div className="relative flex justify-around">
                                     <div className="flex items-end">
                                         <span className="block text-3xl text-purple-400 font-bold"><s>$79</s></span>
-                                        <span className="text-7xl text-white font-bold leading-0">$29</span>
+                                        <span className="text-7xl text-white font-bold leading-0">$0</span>
                                         <span className="block text-1xl text-purple-200 font-bold">USD</span>
                                     </div>
                                 </div>

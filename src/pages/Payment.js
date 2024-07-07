@@ -124,7 +124,7 @@ const Payment = () => {
     const receipt = 'Buildr Profile Lifetime Fee';
 
     try {
-        const response = await fetch('${process.env.REACT_APP_BACKEND_URL}/createPayment', {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/createPayment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -154,7 +154,7 @@ const Payment = () => {
 
                     console.log("hi");
 
-                    const successResponse = await fetch('${process.env.REACT_APP_BACKEND_URL}/paymentSuccess', {
+                    const successResponse = await fetch(`${process.env.REACT_APP_BACKEND_URL}/paymentSuccess`, {
                       method: 'POST',
                       headers: {
                         'Content-Type': 'application/json',

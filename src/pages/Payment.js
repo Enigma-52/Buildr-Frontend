@@ -260,10 +260,10 @@ const Payment = () => {
             Generate for Free!(For Limited Time Only)
           </button>
         <button
-            onClick={processRazorpayPayment}
+            onClick={processStripePayment}
             className="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-red-500 transition duration-300"
           >
-            Contribute ₹39 via Razorpay(Live)
+            Contribute ₹39 via Razorpay(Coming Soon)
           </button>
           <button
             onClick={processStripePayment}

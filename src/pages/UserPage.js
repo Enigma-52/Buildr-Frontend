@@ -287,8 +287,8 @@ const UserPage = () => {
               ))}
             </div>
             
-          <div className="text-center mt-8 pt-6">
-          <a
+            <div className="flex flex-col items-center justify-center text-center text-center mt-8 pt-6">
+            <a
               href="/"
               className="p-[3px] relative inline-block"
             >
@@ -297,7 +297,23 @@ const UserPage = () => {
                 Create Your Own Buildr Page Now!
               </div>
             </a>
+            <div className="mt-4">
+              <a
+                href="https://www.producthunt.com/posts/buildr?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-buildr"
+                target="_blank"
+              >
+                <img
+                  src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=470880&theme=light"
+                  alt="Buildr - Create stunning developer portfolio in minutes! | Product Hunt"
+                  style={{ width: '250px', height: '54px' }}
+                  width="250"
+                  height="54"
+                />
+              </a>
+            </div>
           </div>
+
+          
           
         </div>
       </div>
